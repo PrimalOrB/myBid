@@ -60,7 +60,17 @@ auctionSchema.virtual('auctionInfo').get(function() {
     currentLeader: "",
   }
 
-  let bidOrder = bidders.sort( ( a, b ) => a.bidder - b.bidder )
+  if( bidders.length ===1 ){
+    auction.currentBid = auction.currentBid + bidders[0].increment 
+    auction.bidCount += 1
+    auction.reserveMet = auction.currentBid >= auction.reserve
+    auction.currentLeader = bidders[0].userId
+    console.log( `${bidders[0].userId} bids $${auction.currentBid} ( initial bid of $${ bidders[0].increment } ) `)
+  }
+
+  let bidOrder = bidders.sort( ( a, b ) => a.createdAt - b.createdAt )
+  console.log( bidOrder )
+
     while( bidOrder.length > 1 ){
         for( var i = 0; i < bidOrder.length; i++){
             if( auction.currentBid + bidOrder[i].increment <= bidOrder[i].maxBid && bidOrder[i].incrementing === true ){ // if bidder can bid within their increment, then add to current bid, and number of bids

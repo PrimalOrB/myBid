@@ -21,7 +21,11 @@ const bidSchema = new Schema(
     incrementing: {
       type: Boolean,
       required: true,
-    }
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
 );
 

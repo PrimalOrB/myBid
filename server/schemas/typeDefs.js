@@ -34,6 +34,7 @@ type Auth {
 type Auction {
     _id: ID
     ownerId: ID!
+    createdAt: String
     title: String!
     description: String!
     reserve: Int
@@ -54,6 +55,7 @@ type Result {
 type Bid {
     _id: ID
     auctionId: ID!
+    createdAt: String
     userId: ID!
     maxBid: Int!
     increment: Int!
