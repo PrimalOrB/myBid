@@ -20,6 +20,18 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    auctions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Auction'
+      }
+    ],
+    bids: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Bid'
+      }
+    ]
   },
   {
     toJSON: {
