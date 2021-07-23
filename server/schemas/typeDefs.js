@@ -53,7 +53,6 @@ type Result {
 
 type Bid {
     _id: ID
-    bidOrder: Int
     auctionId: ID!
     userId: ID!
     maxBid: Int!

@@ -2,10 +2,6 @@ const { Schema, model } = require( 'mongoose' );
 
 const bidSchema = new Schema(
   {
-    bidOrder: {
-      type: Number,
-      // required: true
-    },
     auctionId: {
       type: Schema.Types.ObjectId,
       required: true,
