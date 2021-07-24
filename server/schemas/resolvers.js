@@ -181,6 +181,33 @@ const resolvers = {
       }
       throw new AuthenticationError('Incorrect credentials');
     },
+    updateAuction: async (parent, { _id, input } , context) => {
+      if( context.user ){
+          // get data for current bid
+        let { title, description, reserve, endDate } = input
+        const currentAuction = await Auction.findOne( { _id } )
+
+          // if context user matches the owner of the bid, allow update
+        if( currentAuction.ownerId == context.user._id) {
+            // verify that maxBid and increment are not being reduced from current settings, otherwise continue with current
+            reserve = reserve >= currentAuction.reserve ? currentAuction.reserve : reserve
+            endDate = endDate <= currentAuction.endDate ? currentAuction.endDate : endDate
+
+            // update auction 
+          const updatedAuction  = await Auction.findOneAndUpdate(
+            { _id },
+            { title, description, reserve, endDate },
+            { new: true, runValidators: true }
+            ).populate('bids')
+
+          return updatedAuction
+        }
+          // else return the original auction
+        return currentAuction
+
+      }
+      throw new AuthenticationError('Incorrect credentials');
+    },
   }
 }
 

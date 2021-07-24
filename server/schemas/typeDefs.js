@@ -72,9 +72,10 @@ type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addAuction(input: AuctionInput!): User
+    updateAuction(_id: ID!, input: AuctionInput!): Auction
     addBid(input: BidInput!): Auction
-    deleteBid(_id: ID!): Auction
     updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
+    deleteBid(_id: ID!): Auction
 }
 `;
 
