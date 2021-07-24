@@ -54,7 +54,7 @@ auctionSchema.virtual('auctionInfo').get(function() {
   // initial auction object
   auction = {
     bidCount: 0,
-    reserve: 500,
+    reserve: this.reserve,
     reserveMet: false,
     currentBid: 0,
     currentLeader: "",
