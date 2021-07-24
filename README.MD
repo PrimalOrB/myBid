@@ -43,6 +43,7 @@ in server.js
    - [example of use from github issue](https://github.com/PrimalOrB/myBid/issues/9) 
 
 ## Auction
+[github issue](https://github.com/PrimalOrB/myBid/issues/20)
 - Each auction function is controlled within the Auction model as a virtual
 - As bids are pushed into the Auction: bids array, it calculates the current state of the auction
 - Important information which will be required:
