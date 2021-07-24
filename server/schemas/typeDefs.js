@@ -71,6 +71,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    updatePassword(currentPassword: String!, newPassword: String!): Auth
     addAuction(input: AuctionInput!): User
     updateAuction(_id: ID!, input: AuctionInput!): Auction
     deleteAuction(_id: ID!): User

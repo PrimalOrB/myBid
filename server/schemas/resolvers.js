@@ -2,6 +2,7 @@ const { User, Auction, Bid } = require( '../models' )
 const { AuthenticationError } = require( 'apollo-server-express' )
 const { signToken } = require( '../utils/auth' )
 const { sendEmail } = require( '../utils/nodemailer' )
+const bcrypt = require('bcrypt');
 
 
 const resolvers = {
@@ -62,12 +63,13 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-    
+      
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-    
+      
       const correctPw = await user.isCorrectPassword(password);
+      console.log( correctPw )
     
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
@@ -246,6 +248,34 @@ const resolvers = {
           return updatedUser
         }
         return currentUser
+      }
+      throw new AuthenticationError('Incorrect credentials');
+    },
+    updatePassword: async (parent, args, context) => {
+      if( context.user ){
+          // find user by context
+        const currentUser = await User.findOne( { _id: context.user._id } );
+          // see if password correct
+        const correctPw = await currentUser.isCorrectPassword(args.currentPassword);
+          // fail validation if not correct
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
+          // hash new password
+        const newPass = await bcrypt.hash( args.newPassword, 10 )
+          // update user password
+        const user = await User.findOneAndUpdate( 
+          { _id: context.user._id },
+          { password: newPass },
+          { new: true, runValidators: true }
+          );
+
+          // send password change email
+        const emailData = { username: user.username, email: user.email }
+        sendEmail( emailData, 'password' )
+          // sign new token
+        const token = signToken(user);
+        return { token, user };
       }
       throw new AuthenticationError('Incorrect credentials');
     },

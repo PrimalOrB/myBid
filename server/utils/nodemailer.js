@@ -39,6 +39,22 @@ module.exports = {
             `
           };
         break
+      case 'password':
+        emailRecipient = 'mybid.platform@gmail.com'
+            // would be uncommented for use so it can send to the signed up user
+        // emailRecipient = data.email
+            // mail template
+        mailOptions = {
+            from: process.env.EMAIL_ACCOUNT,
+            to: emailRecipient,
+            subject: `myBid Password change`,
+            generateTextFromHTML: true,
+            html: `
+            <b>myBid Password Change Notification</b><br/>
+            Hello ${ data.username }, this email is to verify that your <b>myBid</b> account password has been updated! <br/>
+            `
+          };
+        break
       default:
         emailRecipient = 'mybid.platform@gmail.com'
             // mail template
