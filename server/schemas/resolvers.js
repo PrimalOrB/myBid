@@ -119,6 +119,33 @@ const resolvers = {
 
       }
     },
+    deleteBid: async (parent, { _id }, context) => {
+      // if( context.user ){
+
+          // get data for current bid
+        const currentBid = await Bid.findOne( { _id } )
+
+          // delete bid
+        const bid = await Bid.deleteOne( { _id } );  
+
+          // pull bid from user array
+        const updatedUser  = await User.findOneAndUpdate(
+          {_id: currentBid.userId },
+          { $pull: { bids: _id } },
+          { new: true, runValidators: true }
+          ).populate('bids');
+
+            // pull bid from autcion array
+        const updatedAuction  = await Auction.findOneAndUpdate(
+          {_id: currentBid.auctionId},
+          { $pull: { bids: _id } },
+          { new: true, runValidators: true }
+          ).populate('bids');
+
+        return updatedAuction
+
+      // }
+    },
   }
 }
 
