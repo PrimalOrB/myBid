@@ -208,6 +208,47 @@ const resolvers = {
       }
       throw new AuthenticationError('Incorrect credentials');
     },
+    deleteAuction: async (parent, { _id }, context) => {
+      if( context.user ){
+          // get data for current bid
+        const currentAuction = await Auction.findOne( { _id } )
+
+          // get current user/owner to return if failed
+        const currentUser  = await User.findOne({_id: currentAuction.ownerId })
+
+          // if context user matches the owner of the auction, allow delete
+        if( currentAuction.ownerId == context.user._id) {
+            // get all bids and map through
+          currentAuction.bids.map( async ( bid ) => {
+              // find bid
+            const currentBid = await Bid.findOne( { _id: bid } )
+              // delete bid
+            const bidToDelete = await Bid.deleteOne( { _id: bid } );
+
+              // remove bid from user bids array
+            const updatedUser  = await User.findOneAndUpdate(
+              {_id: currentBid.userId },
+              { $pull: { bids: bid } },
+              { new: true, runValidators: true }
+              ).populate('bids');
+          })
+
+            // delete auction
+          const auction = await Auction.deleteOne( { _id } );  
+
+            // pull auction from user array
+          const updatedUser  = await User.findOneAndUpdate(
+            {_id: currentAuction.userId },
+            { $pull: { auctions: _id } },
+            { new: true, runValidators: true }
+            ).populate('auctions');
+
+          return updatedUser
+        }
+        return currentUser
+      }
+      throw new AuthenticationError('Incorrect credentials');
+    },
   }
 }
 

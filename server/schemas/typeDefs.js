@@ -73,6 +73,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addAuction(input: AuctionInput!): User
     updateAuction(_id: ID!, input: AuctionInput!): Auction
+    deleteAuction(_id: ID!): User
     addBid(input: BidInput!): Auction
     updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
     deleteBid(_id: ID!): Auction
