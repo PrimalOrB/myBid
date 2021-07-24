@@ -80,6 +80,9 @@ const resolvers = {
       if( context.user ){
           // spread auction data
         const auctionData = { ...input }
+          // set ownerId based on context
+        auctionData.ownerId = context.user._id
+
           // create auction
         const auction = await Auction.create( auctionData );  
 
@@ -97,10 +100,11 @@ const resolvers = {
       if( context.user ){
 
         const bidData = { ...input }
+          // set userId based on context
+        bidData.userId = context.user._id
           // create bid
         const bid = await Bid.create( bidData );  
 
-        console.log( bid )
 
           // add bid reference to user
         const updatedUser  = await User.findOneAndUpdate(

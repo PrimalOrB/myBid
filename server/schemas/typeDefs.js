@@ -3,7 +3,6 @@ const { gql } = require( 'apollo-server-express' );
 const typeDefs = gql`
 
 input AuctionInput {
-    ownerId: ID!
     title: String!
     description: String!
     reserve: Int
@@ -12,7 +11,6 @@ input AuctionInput {
 
 input BidInput {
     auctionId: ID!
-    userId: ID!
     maxBid: Int!
     increment: Int!
     incrementing: Boolean!
