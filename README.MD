@@ -1,11 +1,11 @@
 # myBid working notes
 
 ## Contents
-- [server .env](env}
+- [Server environment variables](env)
 - [Queries - back end](queries)
 - [Mutations - back end](mutations)
 
-## ENV 
+## ENV
 in server.js
 - include .env in `server` root directory with key : AUTH_SECRET=.... (whatever you want)
 
