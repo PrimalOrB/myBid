@@ -76,6 +76,7 @@ type Mutation {
     addAuction(input: AuctionInput!): User
     addBid(input: BidInput!): Auction
     deleteBid(_id: ID!): Auction
+    updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
 }
 `;
 

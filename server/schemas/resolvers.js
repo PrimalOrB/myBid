@@ -120,8 +120,7 @@ const resolvers = {
       }
     },
     deleteBid: async (parent, { _id }, context) => {
-      // if( context.user ){
-
+      if( context.user ){
           // get data for current bid
         const currentBid = await Bid.findOne( { _id } )
 
@@ -143,8 +142,26 @@ const resolvers = {
           ).populate('bids');
 
         return updatedAuction
+      }
+    },
+    updateBid: async (parent, { _id, maxBid, increment} , context) => {
+      if( context.user ){
+          // get data for current bid
+        const currentBid = await Bid.findOne( { _id } )
 
-      // }
+          // verify that maxBid and increment are not being reduced from current settings, otherwise continue with current
+        maxBid = maxBid <= currentBid.maxBid ? currentBid.maxBid : maxBid
+        increment = increment <= currentBid.increment ? currentBid.increment : increment
+
+          // update bid 
+        const updatedBid  = await Bid.findOneAndUpdate(
+          { _id },
+          { maxBid, increment },
+          { new: true, runValidators: true }
+          )
+
+        return updatedBid
+      }
     },
   }
 }

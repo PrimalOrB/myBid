@@ -13,10 +13,12 @@ const bidSchema = new Schema(
     maxBid: {
       type: Number,
       required: true,
+      min: [1, 'max bid must be greater than $1']
     },
     increment: {
       type: Number,
       required: true,
+      min: [1, 'increment must be greater than $1']
     },
     incrementing: {
       type: Boolean,
