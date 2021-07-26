@@ -40,6 +40,7 @@ type Auction {
     bids: [Bid]
     activeStatus: Boolean
     auctionInfo: Result
+    auctionEnd: AuctionEndResult
 }
 
 type Result {
@@ -48,6 +49,12 @@ type Result {
     reserveMet: Boolean,
     currentBid: Int,
     currentLeader: String,
+}
+
+type AuctionEndResult {
+    auctionWinner: String,
+    winningBid: Int,
+    auctionCompleted: Boolean
 }
 
 type Bid {

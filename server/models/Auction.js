@@ -94,6 +94,31 @@ auctionSchema.virtual('auctionInfo').get(function() {
   return auction;
 });
 
+
+// ends an auction and returns
+auctionSchema.virtual('auctionEnd').get(function() {
+  // get auction information
+  const auctionInfo = this.get('auctionInfo');
+
+  // return object
+  auction = {
+    auctionWinner: "No Bids",
+    winningBid: 0,
+    auctionCompleted: false
+  }
+
+  // Check to 
+  if(this.bids.length > 0){
+    auction.auctionWinner = auctionInfo.currentLeader;
+    auction.auctionCompleted = true;
+  }
+
+  console.log("auction data:");
+  console.log(auction);
+
+  return auction;
+});
+
 const Auction = model( 'Auction', auctionSchema );
 
 module.exports = Auction;
