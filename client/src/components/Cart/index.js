@@ -1,4 +1,7 @@
-/*
+//Auth.js both client and server side has been checked
+//You will need to setup a globalState page
+
+
 import React, { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
@@ -106,7 +109,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-
-*/

@@ -1,4 +1,4 @@
-/*
+
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import Jumbotron from '../components/Jumbotron';
@@ -44,9 +44,3 @@ function Success() {
 export default Success;
 
 
-*/
-//discuss with Andrew reg stripe components and pages (simple design)
-//copy some stuff from savedSearch/searchBooks from mod 21 assignment to fill cart functionalty
-//for library https://stripe.com/docs/stripe-js
-
-//Installed stripe on client side,  npm i @stripe/stripe-js on client side. 
