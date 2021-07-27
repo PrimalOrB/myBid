@@ -51,8 +51,14 @@ main {
   height: 100%;
   background-color: white;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
+}
+
+main h1 {
+  width: 100%;
+  text-align: center;
 }
 
 .form-container {
@@ -79,6 +85,57 @@ form button {
   margin-top: 1rem;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
+}
+
+.auction-list {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+}
+
+.card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-desc {
+  font-style: italic;
+}
+
+.card-current {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remaining {
+  color: red;
+  font-weight: bold;
+}
+
+.add-bid {
+  width: 100%;
+}
+
+.add-bid span {
+  display: block;
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: rgb(170, 224, 168);
 }
 
 footer {
