@@ -65,11 +65,9 @@ auctionSchema.virtual('auctionInfo').get(function() {
     auction.bidCount += 1
     auction.reserveMet = auction.currentBid >= auction.reserve
     auction.currentLeader = bidders[0].userId
-    console.log( `${bidders[0].userId} bids $${auction.currentBid} ( initial bid of $${ bidders[0].increment } ) `)
   }
 
   let bidOrder = bidders.sort( ( a, b ) => a.createdAt - b.createdAt )
-  console.log( bidOrder )
 
   for( let i = 0; i < bidOrder.length; i++){
     //for first bidder, do their initial bid
@@ -95,7 +93,7 @@ auctionSchema.virtual('auctionInfo').get(function() {
                 auction.currentBid = bid.maxBid //set current bid
                 auction.reserveMet = auction.currentBid >= auction.reserve // check reserve
                 auction.currentLeader = bid.userId // set leading userId
-            } else if ( auction.currentBid + bid.increment <= bid.maxBid && bid.incrementing === true) { // if incrementing bid
+            } else if ( ( auction.currentBid + bid.increment ) <= bid.maxBid && bid.incrementing === true) { // if incrementing bid
                 auction.bidCount +=1 // add to bidcount
                 auction.currentBid = auction.currentBid + bid.increment  //set current bid
                 auction.reserveMet = auction.currentBid >= auction.reserve // check reserve

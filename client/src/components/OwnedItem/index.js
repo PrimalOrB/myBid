@@ -3,7 +3,7 @@ import { paddedNumber, calculateTimeLeft } from '../../utils/helpers';
 import Auth from '../../utils/auth';
 import { Link } from 'react-router-dom';
 
-const AuctionItem = ( { auction, addBid } ) => {
+const OwnedItem = ( { auction } ) => {
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft( auction.endDate ));
 
@@ -48,14 +48,9 @@ const AuctionItem = ( { auction, addBid } ) => {
                 ) 
             }
             </div>
-            { ( loggedIn && addBid) && (
-            <div className="add-bid">
-                <span><Link to={ `/auction/${ auction._id }`} >Add Bid!</Link></span>
-            </div>
-            )}
         </article>
         }
     </>
   );
 };
-export default AuctionItem;
+export default OwnedItem;

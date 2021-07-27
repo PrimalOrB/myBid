@@ -46,6 +46,13 @@ header svg {
 header a {
   font-size: 1.5rem;
   padding: 0.75rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+header nav{
+  display: flex
 }
 
 main {
@@ -88,6 +95,17 @@ form button {
   border-radius: 0.5rem;
 }
 
+.profile-container {
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .auction-list {
   width: 90%;
   height: 100%;
@@ -95,6 +113,19 @@ form button {
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.owned-list {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.owned-list h2 {
+  width: 100%;
+  text-align: center;
 }
 
 .place-bid-container,
@@ -108,6 +139,8 @@ form button {
   flex-wrap: wrap;
 }
 
+.owned-list
+
 .card,
 .bid-form {
   margin: 0.5rem;
@@ -119,6 +152,11 @@ form button {
   border-radius: 0.5rem;
   border: 1px solid black;
 }
+
+.owned-list .card {
+  width: 100%
+}
+
 
 .card-title {
   font-size: large;

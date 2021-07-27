@@ -40,16 +40,16 @@ const BidForm = ( _id, currentBid  ) => {
             incrementing: formState.incrementing
         }
 
-        console.log( input )
-        try {
-
-            await addBid({
-                variables: { 
-                    input: input
-                }
-            });
-        
-            } catch (event) {
+        if( input.auctionId !== null && input.maxBid >= 1 && input.increment >= 1 ) {
+            try {
+                    await addBid({
+                    variables: { 
+                        input: input
+                    }
+                });
+            
+                } catch (event) {
+            }
         }
     }
 

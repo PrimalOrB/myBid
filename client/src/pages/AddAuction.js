@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { ADD_AUCTION } from '../../utils/mutations'
+import { ADD_AUCTION } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import Loading from '../components/Loading'
 
-const AuctionForm = ( ) => {
+const AddAuction = ( ) => {
 
-    const [formState, setFormState] = useState({ title: null, description: null, reserve: 0, endDate: null });
+    const loggedIn = Auth.loggedIn();
+
+    const [formState, setFormState] = useState({ title: '', description: '', reserve: 0, endDate: '' });
 
     const handleChange = (event) => {
         const { name, value, type } = event.target;
@@ -23,6 +27,7 @@ const AuctionForm = ( ) => {
             }
         }
       });
+      
 
     const handleSubmit = async event =>{
         event.preventDefault()
@@ -44,11 +49,11 @@ const AuctionForm = ( ) => {
                 } catch (event) {
             }
         }
-
     }
 
     return (
         <>
+        { loggedIn ? (
             <form name="auction-form" className='auction-form' autoComplete="off" onSubmit={ handleSubmit }>
                 <label htmlFor="title" onChange={ handleChange }>Title</label>
                 <input type="text" name="title" onChange={ handleChange }/>
@@ -60,7 +65,10 @@ const AuctionForm = ( ) => {
                 <input type="datetime-local" name="endDate" onChange={ handleChange }/>
                 <button type="submit">Add New Auction!</button>
             </form>
+        ) : (
+            <Loading />
+        )}
         </>
     );
 };
-export default AuctionForm;
+export default AddAuction;

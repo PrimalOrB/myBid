@@ -9,6 +9,7 @@ import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import AuctionDetail from './components/AuctionDetail'
+import AddAuction from './pages/AddAuction'
 
 import Home from './pages/Home';
 
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/new" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
             <Route component={NoMatch} />
           </Switch>

@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_AUCTIONS } from '../../utils/queries'
 import Loading from '../Loading'
-import AuctionItem from '../AuctionItem'
+import OwnedItem from '../OwnedItem'
 
-const AuctionList = () => {
+const OwnedBids = ( { userId }) => {
 
   let { data, loading, error } = useQuery( QUERY_AUCTIONS, { pollInterval: 30000 } ); // query every 30 seconds
 
@@ -21,30 +21,25 @@ const AuctionList = () => {
   }
 
     // placeholder array of current auctions
-  const sortedList = []
-    // copy query results and check for expired auctions, then push to new array
+  const currentList = []
+    // copy query results and check for expired auctions, and for current owner, then push to new array
   data.auctions.map( a => {
   const current = new Date().getTime()
-    if(  current < Number( a.endDate ) ) {
-      return sortedList.push( a )
+    if(  current < Number( a.endDate ) && a.ownerId === userId ) {
+      return currentList.push( a )
     }
     return null
   } )
     // sort list of arrays by closest expiry
-  sortedList.sort((a,b) => a.endDate - b.endDate)
+    currentList.sort((a,b) => a.endDate - b.endDate)
 
   return (
     <>
     { 
       <>
-        <h1>Current Auctions</h1>
-        <ul className='auction-list'>
-        { sortedList.length > 0 ? ( sortedList.map( ( auction ) => {
-            return <AuctionItem key={ auction._id } auction={ auction } addBid={ true }/>
-          } 
-        ) ) : (
-          <Loading />
-        ) }
+        <ul className='owned-list'>
+        <h2>Active Bids</h2>
+          <span>No Active Bids (not made yet)</span> 
         </ul>
       </>
       }
@@ -54,4 +49,4 @@ const AuctionList = () => {
 
 
 };
-export default AuctionList;
+export default OwnedBids;
