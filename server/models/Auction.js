@@ -71,25 +71,40 @@ auctionSchema.virtual('auctionInfo').get(function() {
   let bidOrder = bidders.sort( ( a, b ) => a.createdAt - b.createdAt )
   console.log( bidOrder )
 
-    while( bidOrder.length > 1 ){
-        for( var i = 0; i < bidOrder.length; i++){
-            if( auction.currentBid + bidOrder[i].increment <= bidOrder[i].maxBid && bidOrder[i].incrementing === true ){ // if bidder can bid within their increment, then add to current bid, and number of bids
-                auction.currentBid = auction.currentBid + bidOrder[i].increment 
-                auction.bidCount += 1
-                auction.reserveMet = auction.currentBid >= auction.reserve
-                auction.currentLeader = bidOrder[i].userId
-                console.log( `${bidOrder[i].userId} bids $${auction.currentBid} ( increment by $${ bidOrder[i].increment } ) `)
-            } else if ( bidOrder[i].incrementing === false && bidOrder[i].maxBid > auction.currentBid ) { // if bidder places one-time bid (non incrementing) greater than current, then increase current to their max bid
-                auction.currentBid = bidOrder[i].maxBid 
-                auction.bidCount += 1
-                auction.reserveMet = auction.currentBid >= auction.reserve
-                auction.currentLeader = bidOrder[i].userId
-                console.log( `${bidOrder[i].userId} bids $${bidOrder[i].maxBid} ( flat rate bid ) `)
-            } else { // else remove bidder from active activity
-                console.log( `${bidOrder[i].userId} cannot continue`)
-                bidOrder.splice(i, 1)
-            }
+  for( let i = 0; i < bidOrder.length; i++){
+    //for first bidder, do their initial bid
+    if( i === 0 ){
+        if( !bidOrder[i].incrementing ) { // if one time bid
+            auction.bidCount +=1 // add to bidcount
+            auction.currentBid = bidOrder[i].maxBid  //set current bid
+            auction.reserveMet = auction.currentBid >= auction.reserve // check reserve
+            auction.currentLeader = bidOrder[i].userId // set leading userId
+        } else if ( bidOrder[i].incrementing ) { // if incrementing bid
+            auction.bidCount +=1 // add to bidcount
+            auction.currentBid = auction.currentBid + bidOrder[i].increment  //set current bid
+            auction.reserveMet = auction.currentBid >= auction.reserve // check reserve
+            auction.currentLeader = bidOrder[i].userId // set leading userId
         }
+    }
+    // for next bidder in timeline, increment their bids
+    let activeBidders = bidOrder.filter( x => x.createdAt <= bidOrder[i].createdAt ) // filter users who bid before current users in timeline
+    while( activeBidders.length > 1 ){ 
+        activeBidders.map( ( bid, index ) => {
+            if( !bid.incrementing && bid.maxBid > auction.currentBid  ) { // if one time bid and bid greater than current bid
+                auction.bidCount +=1 // add to bidcount
+                auction.currentBid = bid.maxBid //set current bid
+                auction.reserveMet = auction.currentBid >= auction.reserve // check reserve
+                auction.currentLeader = bid.userId // set leading userId
+            } else if ( auction.currentBid + bid.increment <= bid.maxBid && bid.incrementing === true) { // if incrementing bid
+                auction.bidCount +=1 // add to bidcount
+                auction.currentBid = auction.currentBid + bid.increment  //set current bid
+                auction.reserveMet = auction.currentBid >= auction.reserve // check reserve
+                auction.currentLeader = bid.userId // set leading userId
+            } else {
+                activeBidders.splice( index, 1) // if user cannot continue, remove from activeBidders
+            }
+        })
+      }
     }
   return auction;
 });

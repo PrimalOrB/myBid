@@ -30,7 +30,7 @@ const AuctionList = () => {
         <h1>Current Auctions</h1>
         <ul className='auction-list'>
         { data.auctions.map( ( auction ) => {
-          return <AuctionItem key={ auction._id } auction={ auction } />
+          return <AuctionItem key={ auction._id } auction={ auction } addBid={ true }/>
         } ) }
         </ul>
       </>

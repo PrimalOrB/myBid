@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { paddedNumber } from '../../utils/helpers';
 import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
-const AuctionItem = ( { auction } ) => {
+const AuctionItem = ( { auction, addBid } ) => {
 
     const calculateTimeLeft = () => {
         let difference = +new Date( Number( auction.endDate ) ) - +new Date();
@@ -19,7 +20,7 @@ const AuctionItem = ( { auction } ) => {
       return timeLeft;
     }
 
-     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
         const timer=setTimeout(() => {
@@ -47,16 +48,24 @@ const AuctionItem = ( { auction } ) => {
                     <span>{ auction.auctionInfo.bidCount }</span>
                 </div>
             </div>
+            <div className="card-status">
             { !timeLeft.seconds ? <div className="closed-bid"><span>Auction Ended</span></div> : 
-            <span>Time Remaining:
-                <span className='remaining'> { ( timeLeft.days && `${timeLeft.days} days, ` ) }
-                { `${ paddedNumber( timeLeft.hours ) }:${ paddedNumber( timeLeft.minutes ) }:${ paddedNumber( timeLeft.seconds ) }` }
-                </span>        
-            </span>
+                <span>Time Remaining:
+                    <span className='remaining'> { ( timeLeft.days && `${timeLeft.days} days, ` ) }
+                    { `${ paddedNumber( timeLeft.hours ) }:${ paddedNumber( timeLeft.minutes ) }:${ paddedNumber( timeLeft.seconds ) }` }
+                    </span>        
+                </span>
             }
-            { loggedIn && (
+            { auction.auctionInfo.reserveMet ? ( 
+                <span className='reserve-met'>Reserve Met</span> 
+                ) : ( 
+                <span className='reserve-not'>Reserve Not Met</span>
+                ) 
+            }
+            </div>
+            { ( loggedIn && addBid) && (
             <div className="add-bid">
-                <span>Add Bid!</span>
+                <span><Link to={ `/auction/${ auction._id }`} >Add Bid!</Link></span>
             </div>
             )}
         </article>

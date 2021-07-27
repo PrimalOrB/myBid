@@ -48,3 +48,31 @@ export const QUERY_AUCTIONS = gql`
     }
   }
 `;
+
+export const QUERY_AUCTION = gql`
+  query auction($id: ID!) {
+    auction(id: $id){
+      _id
+      ownerId
+      title
+      description
+      reserve
+      endDate
+      activeStatus
+      auctionInfo {
+        bidCount
+        reserveMet
+        currentBid
+        currentLeader
+      }
+      bids {
+        _id
+        userId
+        auctionId
+        maxBid
+        increment
+        incrementing
+      }
+    }
+  }
+`;

@@ -23,3 +23,11 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_BID = gql`
+  mutation addBid($input: BidInput!) {
+    addBid(input: $input) {
+      _id
+    }
+  }
+`;
