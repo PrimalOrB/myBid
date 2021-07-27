@@ -22,5 +22,9 @@
   "homepage": "https://github.com/PrimalOrB/myBid#readme",
   "devDependencies": {
     "concurrently": "^6.2.0"
+  },
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2",
+    "react-materialize": "^3.9.8"
   }
 }
