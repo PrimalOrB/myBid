@@ -2,12 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
 
 #root {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background-color: darkcyan;
@@ -96,7 +97,8 @@ form button {
   flex-wrap: wrap;
 }
 
-.place-bid-container {
+.place-bid-container,
+.add-auction-container {
   width: 90%;
   height: 100%;
   display: flex;
@@ -108,6 +110,7 @@ form button {
 
 .card,
 .bid-form {
+  margin: 0.5rem;
   width: 45%;
   display: flex;
   flex-direction: column;

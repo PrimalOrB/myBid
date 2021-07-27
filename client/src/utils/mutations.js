@@ -31,3 +31,19 @@ export const ADD_BID = gql`
     }
   }
 `;
+
+export const ADD_AUCTION = gql`
+  mutation addAuction($input: AuctionInput!) {
+    addAuction(input: $input) {
+      _id
+      auctions{
+        _id
+        title
+        description
+        ownerId
+        reserve
+        endDate
+      }
+    }
+  }
+`;

@@ -22,7 +22,6 @@ const AuctionList = () => {
     )
   }
 
-
   return (
     <>
     { 

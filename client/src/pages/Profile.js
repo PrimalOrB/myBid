@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import AuctionForm from '../components/AuctionForm'
 
 const Profile = () => {
 
@@ -24,7 +25,10 @@ const Profile = () => {
 
   return (
     <>
-      { `Profile component - ${ user.username } logged in` }
+      <div className="add-auction-container">
+        { `Profile component - ${ user.username } logged in` }
+        <AuctionForm />
+      </div>
     </>
   );
 };
