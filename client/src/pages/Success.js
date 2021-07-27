@@ -1,3 +1,8 @@
+//This page will save the order to the database
+//The Success page will display for three seconds, then redirect to the homepage. 
+//Before redirecting, it should also clear the cart data from IndexedDB and save the user's order in the 
+//app's database.
+
 
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
@@ -21,6 +26,8 @@ function Success() {
           idbPromise('cart', 'delete', item);
         });
       }
+
+//You can use the window.location.assign() method to perform the redirect. 3000 miliseconds or 3 seconds
 
       setTimeout(() => {
         window.location.assign('/');

@@ -3,6 +3,8 @@ const { AuthenticationError } = require( 'apollo-server-express' )
 const { signToken } = require( '../utils/auth' )
 const { sendEmail } = require( '../utils/nodemailer' )
 const bcrypt = require('bcrypt');
+//this is the place where we are importing the stripe session with unique code, this is test API key, not real
+//for actual transaction
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const { Product, Category, Order } = require('../models');
 
@@ -42,6 +44,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    //this is the main place where the stripe session will return session: session.id and this will be used in 
+//the Cart/index.js, as import { QUERY_CHECKOUT } from '../../utils/queries';   and passed in as data
+//in UseEffect with stripePromise, each session.id will differ based on product
+
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ products: args.products });

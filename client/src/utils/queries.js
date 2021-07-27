@@ -21,6 +21,7 @@ export const QUERY_PRODUCTS = gql`
   }
 `;
 
+//this is main query for creating session id with stripe for front end, need all product ids to submit 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
     checkout(products: $products) {

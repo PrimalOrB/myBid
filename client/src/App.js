@@ -1,3 +1,8 @@
+//success page is a part of this, transaction cyle through pages are as follows
+//In the browser, run through the checkout process. After the payment processes, you should be redirected 
+//to the Success page. Three seconds later, you should be redirected to the homepage. Click the Order 
+//History link in the header, and the order you just submitted will show up.
+
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';

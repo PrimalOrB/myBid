@@ -1,3 +1,5 @@
+//we are importing globalstate which is updated and actions and passing in new updated props to front end
+
 import React, { useEffect } from 'react';
 import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';

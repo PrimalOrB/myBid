@@ -3,6 +3,18 @@
 //for library https://stripe.com/docs/stripe-js
 //Installed stripe on client side,  npm i @stripe/stripe-js on client side. 
 //you may need stripe install "stripe" server side: "^8.67.0", check mod
+//Make sure your indexDB is connected as in the mod code, in helpers (mod 22.3)
+//For stripe verification you will need a SSL certificate to prove you are genuine
+//Use third party API to calculate shipping and tax cost and not you dealing with many of Stripe functions
+
+//STEPS
+//finish reading and updating code
+//replace product with auction and remove Category
+//errors
+//test stripe on graphql the main query for session id before moving any further with testing, fake data testing
+//query checkout($products: [ID]!) {checkout(products: $products) {session}}, you will use product ids
+//all stripe mutations have to be checked and then queries, all related to stripe
+//front end test
 
 import React, { createContext, useContext } from "react";
 import { useProductReducer } from './reducers'
