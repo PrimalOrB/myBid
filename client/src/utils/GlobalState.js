@@ -8,8 +8,7 @@
 //Use third party API to calculate shipping and tax cost and not you dealing with many of Stripe functions
 
 //STEPS
-//replace product with auction and remove Category
-//errors, match models with server : typedefs, resolvers, client: queries and mutations
+//errors, match models with server: typedefs, resolvers, client: queries and mutations
 //test stripe on graphql the main query for session id before moving any further with testing, fake data testing
 //query checkout($products: [ID]!) {checkout(products: $products) {session}}, you will use product ids
 //all stripe mutations have to be checked and then queries, all related to stripe

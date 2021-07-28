@@ -15,15 +15,15 @@ function AuctionList() {
   const { loading, data } = useQuery(QUERY_AUCTIONS);
 
   useEffect(() => {
-    if (data) {
+    if (data)  {
       dispatch({
         type: UPDATE_AUCTIONS,
         auctions: data.auctions,
       });
-      data.auctions.forEach((auction)) => {
+      data.auctions.forEach((auction) => {
         idbPromise('auctions', 'put', auction);
       });
-    } else if (!loading) {
+    }   else if (!loading) {
       idbPromise('auctions', 'get').then((auctions) => {
         dispatch({
           type: UPDATE_AUCTIONS,
