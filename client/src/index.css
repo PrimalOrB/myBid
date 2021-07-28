@@ -2,18 +2,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
 }
 
 #root {
-<<<<<<< HEAD
-  width: 100vw;
-  height: 100%;
-  min-height: 100vh;
-=======
   width: 100%;
   height: 100vh;
->>>>>>> feature/login-signup
   display: flex;
   justify-content: center;
   background-color: darkcyan;
@@ -48,18 +41,6 @@ svg{
   margin-right: 0.5rem;
 }
 
-<<<<<<< HEAD
-header a {
-  font-size: 1.5rem;
-  padding: 0.75rem;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-header nav{
-  display: flex
-=======
 /*hiding the nav bar*/
 nav{
   background-color: lightskyblue;
@@ -79,7 +60,6 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
->>>>>>> feature/login-signup
 }
 
 /*main body*/
@@ -126,116 +106,6 @@ form {
   border-radius: 0.5rem;
 }
 
-<<<<<<< HEAD
-.profile-container {
-  width: 100%;
-  justify-content: center;
-}
-
-.profile-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.auction-list {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.owned-list {
-  width: 40%;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.owned-list h2 {
-  width: 100%;
-  text-align: center;
-}
-
-.place-bid-container,
-.add-auction-container {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.owned-list
-
-.card,
-.bid-form {
-  margin: 0.5rem;
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid black;
-}
-
-.owned-list .card {
-  width: 100%
-}
-
-
-.card-title {
-  font-size: large;
-  font-weight: bold;
-}
-
-.card-desc {
-  font-style: italic;
-}
-
-.card-status {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-current {
-  display: flex;
-  justify-content: space-between;
-}
-
-.remaining {
-  color: red;
-  font-weight: bold;
-}
-
-.add-bid {
-  width: 100%;
-}
-
-.reserve-met {
-  color: green;
-}
-
-.reserve-not {
-  color: red;
-}
-
-.add-bid span {
-  display: block;
-  text-align: center;
-  font-size: larger;
-  width: 100%;
-  border-radius: 0.3rem;
-  background-color: rgb(170, 224, 168);
-}
-
-=======
 /*btn color*/
 .btn{
   background-color: #301934;
@@ -243,7 +113,6 @@ form {
 }
 
 /*footer style*/
->>>>>>> feature/login-signup
 footer {
   text-align: center;
     justify-content: flex-start;
