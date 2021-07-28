@@ -10,7 +10,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: #c0b7a659
 }
 
 a {
@@ -30,7 +30,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightskyblue;
+  background-color: #00D9C0;
 }
 
 header h1 {
@@ -45,6 +45,14 @@ header svg {
 header a {
   font-size: 1.5rem;
   padding: 0.75rem;
+}
+
+.navWords {
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
+  width: 100%;
+  font-weight: 600;
+  color: black;
 }
 
 main {
@@ -83,5 +91,5 @@ form button {
 
 footer {
   text-align: center;
-  background-color: lightskyblue;
+  background-color: #00D9C0;
 }

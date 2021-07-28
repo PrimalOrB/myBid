@@ -11,17 +11,22 @@ const Home = () => {
   const loggedIn = Auth.loggedIn();
 
   return (
-    <>
-        {loggedIn && userData ? (
-          <>
-            Logged InHome Component
-          </>
-        ) : 
-          <>
-            Logged Out Home Component
-          </>
-        }
-    </>
+
+    <div>
+      
+    </div>
+    
+    // <>
+    //     {loggedIn && userData ? (
+    //       <>
+    //         Logged InHome Component
+    //       </>
+    //     ) : 
+    //       <>
+    //         Logged Out Home Component
+    //       </>
+    //     }
+    // </>
   );
 };
 
