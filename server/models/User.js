@@ -55,6 +55,23 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
+// Once a user is added call this function on the user ONCE
+userSchema.virtual('auctionEnd').get(function() {
+  const usersAuctions = this.auctions;
+  console.log("User " + this.username + "'s auctions");
+  usersAuctions.forEach(element => {
+    console.log("Active Status: " + element.get("activeStatus"));
+    console.log("Bid Leader: " + element.get("auctionInfo").currentLeader);
+  });
+  for (let i = 0; i < usersAuctions.length; i++) {
+    console.log("Auction: " + i);
+    console.log("Active Status: " + usersAuctions[i].get("activeStatus"));
+    console.log("Bid Leader: " + usersAuctions[i].get("auctionInfo").currentLeader);
+  }
+
+  return "auctionEnd";
+});
+
 const User = model('User', userSchema);
 
 module.exports = User;

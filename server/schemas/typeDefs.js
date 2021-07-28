@@ -31,6 +31,7 @@ type User {
     email: String
     auctions: [Auction]
     bids: [Bid]
+    auctionEnd: String
 }
 
 type Checkout {
