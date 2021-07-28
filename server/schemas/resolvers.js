@@ -9,8 +9,6 @@ const bcrypt = require('bcrypt');
 //this is the place where we are importing the stripe session with unique code, this is test API key, not real
 //for actual transaction
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-const { Auction, Order } = require('../models');
-
 
 const resolvers = {
   Query:  {

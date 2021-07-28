@@ -1,12 +1,13 @@
 
 .cart {
-    position: fixed;
-    top: 0;
-    right: 0;
+    /* position: fixed; */
+    /* top: 0;
+    right: 0; */
+    position: relative;
     min-width: 20%;
     max-width: 30%;
     max-height: 60%;
-    background-color: var(--light);
+    /* background-color: var(--light); */
     overflow: auto;
     padding: .5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
@@ -15,7 +16,7 @@
   
   .cart h2 {
     font-size: 1.5rem;
-    border-bottom: 1px solid var(--dark);
+    /* border-bottom: 1px solid var(--dark); */
     padding-bottom: .5rem;
     margin: 1rem 0;
   }
@@ -25,7 +26,7 @@
     top: .5rem;
     right: .5rem;
     cursor: pointer;
-    color: var(--tertiary);
+    /* color: var(--tertiary); */
   }
   
   .cart .close:hover {
@@ -33,16 +34,16 @@
   }
   
   .cart-closed {
-    position: fixed;
-    top: 2%;
-    right: 1%;
+    /* position: fixed; */
+    /* top: 2%; */
+    /* right: 1%; */
     font-size: 2rem;
     cursor: pointer;
-    background-color: var(--secondary);
-    border-radius: 50%;
-    padding: .25rem;
-    width: 50px;
-    height: 50px;
+    /* background-color: var(--secondary); */
+    /* border-radius: 50%; */
+    padding: .5rem;
+    /* width: 50px;
+    height: 50px; */
   }
   
   .cart-closed:hover {

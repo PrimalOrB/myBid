@@ -13,13 +13,9 @@ import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-<<<<<<< HEAD
-import AuctionDetail from './components/AuctionDetail'
-import AddAuction from './pages/AddAuction'
-
-=======
+import AuctionDetail from './components/AuctionDetail';
+import AddAuction from './pages/AddAuction';
 import Detail from './pages/Detail';
->>>>>>> ef84b70fdc565524bba8a823ef62033fb9e96f3a
 import Home from './pages/Home';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
@@ -57,14 +53,11 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
-<<<<<<< HEAD
             <Route exact path="/new" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
-=======
             <Route exact path="/success" component={Success} />
             <Route exact path="/orderHistory" component={OrderHistory} />
             <Route exact path="/auctions/:id" component={Detail} />  
->>>>>>> ef84b70fdc565524bba8a823ef62033fb9e96f3a
             <Route component={NoMatch} />
           </Switch>
    

@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* border: 1px solid black */
 }
 
 #root {
@@ -10,6 +11,10 @@
   display: flex;
   justify-content: center;
   background-color: darkcyan;
+}
+
+a {
+  text-decoration: none;
 }
 
 /*header style*/
@@ -44,7 +49,20 @@ svg{
 /*hiding the nav bar*/
 nav{
   background-color: lightskyblue;
-  box-shadow: none
+  box-shadow: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav a,
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 /*font for the nav*/
@@ -54,7 +72,7 @@ li {
 
 
 .page-container {
-  min-width: 100%;
+  width: 100%;
   min-height: 100vh;
   max-width: 1200px;
   display: flex;
@@ -115,16 +133,138 @@ form {
 /*footer style*/
 footer {
   text-align: center;
-    justify-content: flex-start;
-    background-color: lightskyblue;
-    height: 65px;
-    display: flex;
-    align-content: center;
-    align-items: center;
+  justify-content: flex-start;
+  background-color: lightskyblue;
+  height: 65px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+footer h2 {
+  width: 100%;
+  text-align: center;
 }
 
 h2{
   margin:0;
   font-size:1rem
 
+}
+
+
+
+/* added */
+.auction-list {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.owned-list {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.owned-list h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.place-bid-container,
+.add-auction-container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card,
+.bid-form {
+  margin: 0.5rem;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+}
+
+.owned-list .card {
+  width: 100%
+}
+
+
+.card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-desc {
+  font-style: italic;
+}
+
+.card-status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-current {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remaining {
+  color: red;
+  font-weight: bold;
+}
+
+.add-bid {
+  width: 100%;
+}
+
+.reserve-met {
+  color: green;
+}
+
+.reserve-not {
+  color: red;
+}
+
+.add-bid span {
+  display: block;
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: rgb(170, 224, 168);
+}
+
+.profile-container {
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* matertialize override temp */
+input[type="checkbox"]:not(:checked), 
+input[type="checkbox"]:checked{
+  opacity: 1;
+  position:initial;
+  pointer-events: all;
 }
