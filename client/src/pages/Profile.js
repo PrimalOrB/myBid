@@ -1,6 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import AuctionForm from '../components/AuctionForm'
+import OwnedAuctions from '../components/OwnedAuctions'
+import OwnedBids from '../components/OwnedBids'
 
 const Profile = () => {
 
@@ -9,6 +12,8 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
+
+  console.log( user )
  
   if (loading) {
     return <div>Loading...</div>;
@@ -24,7 +29,13 @@ const Profile = () => {
 
   return (
     <>
-      { `Profile component - ${ user.username } logged in` }
+      <div className="profile-container">
+        <h1>{ `Profile component - ${ user.username } logged in` }</h1>
+        <div className="profile-items">
+          <OwnedAuctions userId={ user._id }/>
+          <OwnedBids userId={ user._id }/>
+        </div>
+      </div>
     </>
   );
 };

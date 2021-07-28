@@ -34,16 +34,17 @@ const Signup = () => {
   };
 
   return (
-        <div className="form-container">
+        <div className="form-container input-field col s6">
           <h4>Sign Up</h4>
             <form onSubmit={handleFormSubmit}>
-              <input
+              <input 
                 placeholder='Your username'
                 name='username'
-                type='username'
+                type='text'
                 id='username'
                 value={formState.username}
                 onChange={handleChange}
+               
               />
               <input
                 placeholder='Your email'
@@ -61,12 +62,14 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button type='submit'>
-                Submit
+              <button type='submit'className="btn waves-effect waves-light">
+              <i className ="material-icons center"> Submit</i>
               </button>
               {error && <div>Sign up failed</div>}
             </form>
+            
         </div>
+
   );
 };
 

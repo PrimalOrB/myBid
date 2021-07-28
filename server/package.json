@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stripe/stripe-js": "^1.16.0",
     "apollo-server-express": "^2.25.2",
     "bcrypt": "^4.0.1",
     "dotenv": "^10.0.0",
@@ -20,7 +21,8 @@
     "graphql": "^15.5.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
-    "nodemailer": "^6.6.3"
+    "nodemailer": "^6.6.3",
+    "stripe": "^8.165.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

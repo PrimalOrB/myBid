@@ -2,11 +2,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid black; */
+  /* border: 1px solid black */
 }
 
 #root {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -18,6 +18,64 @@ a {
   text-decoration: none;
 }
 
+/*header style*/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+<<<<<<< HEAD
+  background-color: #00d9c0;
+=======
+  height:100px;
+  background-color: lightskyblue;
+>>>>>>> 92575416fff37894af986e1669688c73e15ca051
+}
+
+/*company name*/
+a {
+  text-decoration: none;
+  color:#301934;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+}
+
+/*company name position*/
+header h1 {
+  display: flex;
+  align-items: center;
+}
+
+/*gavel*/
+svg{
+  color:#301934;
+  margin-right: 0.5rem;
+}
+
+/*hiding the nav bar*/
+nav{
+  background-color: lightskyblue;
+  box-shadow: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav a,
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/*font for the nav*/
+li {
+  font-family:'Source Sans Pro', sans-serif;
+}
+
+
 .page-container {
   width: 100%;
   min-height: 100vh;
@@ -27,35 +85,21 @@ a {
   justify-content: space-between;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #00d9c0;
-}
-
-header h1 {
-  display: flex;
-  align-items: center;
-}
-
-header svg {
-  margin-right: 0.5rem;
-}
-
-header a {
-  font-size: 1.5rem;
-  padding: 0.75rem;
-}
-
+/*main body*/
 main {
   height: 100%;
   background-color: white;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
   border: black;
   border-radius: 5px;
+}
+
+main h1 {
+  width: 100%;
+  text-align: center;
 }
 
 .form-container {
@@ -63,10 +107,13 @@ main {
   max-width: 400px;
 }
 
+/*title fonts*/
 .form-container h4 {
   text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
+/*form styles*/
 form {
   display: flex;
   flex-direction: column;
@@ -78,12 +125,13 @@ form input {
   border-radius: 0.5rem;
 }
 
-form button {
+form {
   margin-top: 1rem;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
 }
 
+<<<<<<< HEAD
 .navWord {
   font-family: 'Roboto', sans-serif;
   height: 75vh;
@@ -95,4 +143,149 @@ form button {
 footer {
   text-align: center;
   background-color: #00d9c0;
+=======
+/*btn color*/
+.btn{
+  background-color: #301934;
+  border-radius: 25px
+}
+
+/*footer style*/
+footer {
+  text-align: center;
+  justify-content: flex-start;
+  background-color: lightskyblue;
+  height: 65px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+footer h2 {
+  width: 100%;
+  text-align: center;
+}
+
+h2{
+  margin:0;
+  font-size:1rem
+
+}
+
+
+
+/* added */
+.auction-list {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.owned-list {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.owned-list h2 {
+  width: 100%;
+  text-align: center;
+}
+
+.place-bid-container,
+.add-auction-container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card,
+.bid-form {
+  margin: 0.5rem;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+}
+
+.owned-list .card {
+  width: 100%
+}
+
+
+.card-title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-desc {
+  font-style: italic;
+}
+
+.card-status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-current {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remaining {
+  color: red;
+  font-weight: bold;
+}
+
+.add-bid {
+  width: 100%;
+}
+
+.reserve-met {
+  color: green;
+}
+
+.reserve-not {
+  color: red;
+}
+
+.add-bid span {
+  display: block;
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+  border-radius: 0.3rem;
+  background-color: rgb(170, 224, 168);
+}
+
+.profile-container {
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* matertialize override temp */
+input[type="checkbox"]:not(:checked), 
+input[type="checkbox"]:checked{
+  opacity: 1;
+  position:initial;
+  pointer-events: all;
+>>>>>>> 92575416fff37894af986e1669688c73e15ca051
 }
