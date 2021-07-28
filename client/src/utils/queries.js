@@ -5,51 +5,37 @@
 
 import { gql } from '@apollo/client';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+//this may need revision
+export const QUERY_AUCTIONS = gql`
+  query getauctions($auction: ID) {
+    auctions(auction: $auction) {
       _id
       name
       description
       price
       quantity
       image
-      category {
-        _id
-      }
     }
   }
 `;
 
 //this is main query for creating session id with stripe for front end, need all product ids to submit 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($auctions: [ID]!) {
+    checkout(auctions: $auctions) {
       session
     }
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
+export const QUERY_ALL_AUCTIONS = gql`
   {
-    products {
+   auctions {
       _id
       name
       description
       price
       quantity
-      category {
-        name
-      }
-    }
-  }
-`;
-
-export const QUERY_CATEGORIES = gql`
-  {
-    categories {
-      _id
-      name
     }
   }
 `;

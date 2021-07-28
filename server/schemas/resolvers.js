@@ -1,3 +1,6 @@
+//this section has to match with queries and mutationson client side, special attention to changes to 
+//product to auction and deletion of category/categories, models must match to anything here
+
 const { User, Auction, Bid } = require( '../models' )
 const { AuthenticationError } = require( 'apollo-server-express' )
 const { signToken } = require( '../utils/auth' )
@@ -6,37 +9,17 @@ const bcrypt = require('bcrypt');
 //this is the place where we are importing the stripe session with unique code, this is test API key, not real
 //for actual transaction
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-const { Product, Category, Order } = require('../models');
+const { Auction, Order } = require('../models');
 
 
 const resolvers = {
-  Query: {
-    categories: async () => {
-      return await Category.find();
-    },
-    products: async (parent, { category, name }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-
-      return await Product.find(params).populate('category');
-    },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('category');
-    },
+  Query:  {
+//this query needs to be checked for path and populate
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
-          populate: 'category'
+          path: 'orders.auctions',
+          populate: 'auction'
         });
 
         return user.orders.id(_id);
@@ -51,21 +34,21 @@ const resolvers = {
 
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
+      const order = new Order({ auctions: args.auctions });
       const line_items = [];
 
-      const { products } = await order.populate('products').execPopulate();
+      const { auctions } = await order.populate('auctions').execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
+      for (let i = 0; i < auctions.length; i++) {
+        const auction = await stripe.auctions.create({
+          name: auctions[i].name,
+          description: auctions[i].description,
+          images: [`${url}/images/${auctions[i].image}`]
         });
 
         const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
+          auction: auction.id,
+          unit_amount: auctions[i].price * 100,
           currency: 'usd',
         });
 
@@ -131,10 +114,10 @@ const resolvers = {
   },
 
   Mutation: {
-    addOrder: async (parent, { products }, context) => {
+    addOrder: async (parent, { auctions }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ auctions });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
@@ -142,11 +125,6 @@ const resolvers = {
       }
 
       throw new AuthenticationError('Not logged in');
-    },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     
     addUser: async (parent, args) => {

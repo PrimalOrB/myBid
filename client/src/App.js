@@ -53,7 +53,7 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/success" component={Success} />
             <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/products/:id" component={Detail} />  
+            <Route exact path="/auctions/:id" component={Detail} />  
             <Route component={NoMatch} />
           </Switch>
    

@@ -14,18 +14,15 @@ export const LOGIN_USER = gql`
 
 //this here needs to be checked for argument names 
 export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
+  mutation addOrder($auctions: [ID]!) {
+    addOrder(auctions: $auctions) {
       purchaseDate
-      products {
+      auctions {
         _id
         name
         description
         price
         quantity
-        category {
-          name
-        }
       }
     }
   }
