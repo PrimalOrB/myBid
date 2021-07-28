@@ -1,8 +1,17 @@
+//this section has to match with queries and mutationson client side, special attention to changes to 
+//product to auction and deletion of category/categories, models must match to anything here
+
 const { gql } = require( 'apollo-server-express' );
 
 const typeDefs = gql`
 
-input AuctionInput {
+  type Order {
+    _id: ID
+    purchaseDate: String
+    auctions: [Auction]
+  }
+
+  input AuctionInput {
     title: String!
     description: String!
     reserve: Int
@@ -23,6 +32,10 @@ type User {
     auctions: [Auction]
     bids: [Bid]
 }
+
+type Checkout {
+    session: ID
+  }
 
 type Auth {
     token: ID!
@@ -66,6 +79,8 @@ type Query {
     user(username: String!): User
     auctions: [Auction]
     auction(id: ID!): Auction
+    order(_id: ID!): Order
+    checkout(auctions: [ID]!): Checkout
 }
 
 type Mutation {
@@ -78,6 +93,7 @@ type Mutation {
     addBid(input: BidInput!): Auction
     updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
     deleteBid(_id: ID!): Auction
+    addOrder(auctions: [ID]!): Order
 }
 `;
 

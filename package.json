@@ -24,7 +24,11 @@
     "concurrently": "^6.2.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "materialize-css": "^1.0.0-rc.2",
     "react-materialize": "^3.9.8"
+=======
+    "@stripe/stripe-js": "^1.16.0"
+>>>>>>> ef84b70fdc565524bba8a823ef62033fb9e96f3a
   }
 }
