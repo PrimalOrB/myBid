@@ -10,7 +10,8 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: rgb(238, 234, 234);
+  
 }
 
 a {
@@ -30,7 +31,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightskyblue;
+  background-color: #00d9c0;
 }
 
 header h1 {
@@ -53,6 +54,8 @@ main {
   display: flex;
   justify-content: center;
   padding: 1rem;
+  border: black;
+  border-radius: 5px;
 }
 
 .form-container {
@@ -81,7 +84,15 @@ form button {
   border-radius: 0.5rem;
 }
 
+.navWord {
+  font-family: 'Roboto', sans-serif;
+  height: 75vh;
+  width: 100%;
+  color: black;
+  font-weight: 600;
+}
+
 footer {
   text-align: center;
-  background-color: lightskyblue;
+  background-color: #00d9c0;
 }

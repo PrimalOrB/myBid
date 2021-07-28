@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-import { GiGavel } from 'react-icons/gi'
+import { GiGavel } from 'react-icons/gi';
+import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
+import { ShoppingCart } from '@material-ui/icons';
 
 const Header = () => {
 
@@ -15,6 +17,7 @@ const Header = () => {
         <Link to="/">
           <h1><GiGavel/>myBid</h1>
         </Link>
+       
 
         <nav>
           {Auth.loggedIn() ? (
@@ -26,8 +29,8 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login" className= "navWord" >LOGIN</Link>
+              <Link to="/signup" className= "navWord" >SIGNUP</Link>
             </>
           )}
         </nav>
