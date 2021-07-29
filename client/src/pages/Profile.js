@@ -28,8 +28,8 @@ const Profile = () => {
   return (
     <>
       <div className="profile-container">
+        <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
         <h1>{ `Profile component - ${ user.username } logged in` }</h1>
-        <Link to={ '/changepw' }>Change Password</Link>
         <div className="profile-items">
           <OwnedBids userId={ user._id }/>
           <OwnedAuctions userId={ user._id }/>

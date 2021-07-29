@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 #root {
@@ -93,6 +93,7 @@ main {
 main h1 {
   width: 100%;
   text-align: center;
+  margin: 0 0 1rem 0;
 }
 
 .form-container {
@@ -166,6 +167,9 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: lightgray;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .owned-list h2 {
@@ -199,7 +203,7 @@ h2 {
 }
 
 .owned-list .card {
-  width: 100%;
+  width: calc(100% - 1rem);
 }
 
 .card-title {
@@ -249,6 +253,8 @@ h2 {
 
 .profile-container {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -264,4 +270,10 @@ input[type="checkbox"]:checked {
   opacity: 1;
   position: initial;
   pointer-events: all;
+}
+
+.change-pw {
+  background-color: lightskyblue;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.75rem;
 }
