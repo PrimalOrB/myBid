@@ -20,6 +20,7 @@ import Home from './pages/Home';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import ChangePassword from './pages/ChangePassword';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,6 +54,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/changepw" component={ChangePassword} />
             <Route exact path="/new" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
             <Route exact path="/success" component={Success} />

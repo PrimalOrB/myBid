@@ -63,3 +63,14 @@ export const ADD_AUCTION = gql`
     }
   }
 `;
+
+export const CHANGE_PASSWORD = gql`
+  mutation updatePassword($currentPassword: String!, $newPassword: String!){
+    updatePassword(currentPassword: $currentPassword, newPassword: $newPassword){
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;

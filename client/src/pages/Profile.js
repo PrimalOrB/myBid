@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
-import AuctionForm from '../components/AuctionForm'
 import OwnedAuctions from '../components/OwnedAuctions'
 import OwnedBids from '../components/OwnedBids'
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -31,6 +31,7 @@ const Profile = () => {
     <>
       <div className="profile-container">
         <h1>{ `Profile component - ${ user.username } logged in` }</h1>
+        <Link to={ '/changepw' }>Change Password</Link>
         <div className="profile-items">
           <OwnedAuctions userId={ user._id }/>
           <OwnedBids userId={ user._id }/>
