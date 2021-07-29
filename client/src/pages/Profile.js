@@ -13,8 +13,6 @@ const Profile = () => {
 
   const user = data?.me || data?.user || {};
 
-  console.log( user )
- 
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -33,8 +31,8 @@ const Profile = () => {
         <h1>{ `Profile component - ${ user.username } logged in` }</h1>
         <Link to={ '/changepw' }>Change Password</Link>
         <div className="profile-items">
-          <OwnedAuctions userId={ user._id }/>
           <OwnedBids userId={ user._id }/>
+          <OwnedAuctions userId={ user._id }/>
         </div>
       </div>
     </>

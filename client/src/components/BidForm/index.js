@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ADD_BID } from '../../utils/mutations'
 import { useMutation } from '@apollo/client';
+import ErrorMessage from '../ErrorMessage'
 
 const BidForm = ( _id, currentBid  ) => {
 
@@ -29,7 +30,13 @@ const BidForm = ( _id, currentBid  ) => {
                 console.error(e);
             }
         }
-      });
+    });
+
+    if( error ){
+        return (
+          <ErrorMessage />
+        )
+    }
 
     const handleSubmit = async event =>{
         event.preventDefault()

@@ -1,6 +1,5 @@
 export function paddedNumber ( number ) {
     var s = String( number );
-    console.log( s, s.length )
     while (s.length < 2 ) {s = "0" + s;}
     return s;
 }

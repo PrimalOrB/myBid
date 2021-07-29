@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
 
 #root {
@@ -154,6 +154,7 @@ h2 {
 /* added */
 .auction-list {
   width: 90%;
+  height: auto;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -163,9 +164,8 @@ h2 {
 .owned-list {
   width: 40%;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 .owned-list h2 {
@@ -185,7 +185,9 @@ h2 {
 }
 
 .card,
-.bid-form {
+.bid-form,
+.password-form,
+.auction-form {
   margin: 0.5rem;
   width: 45%;
   display: flex;

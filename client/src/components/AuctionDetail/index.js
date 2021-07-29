@@ -5,6 +5,7 @@ import Loading from '../Loading'
 import AuctionItem from '../AuctionItem'
 import { useParams } from 'react-router-dom';
 import BidForm from '../BidForm'
+import ErrorMessage from '../ErrorMessage'
 
 const AuctionDetail = ( ) => {
 
@@ -23,7 +24,7 @@ const { loading, data, error  } = useQuery(QUERY_AUCTION,{
 
   if( error ){
     return (
-      <h1>Error</h1>
+      <ErrorMessage />
     )
   }
 

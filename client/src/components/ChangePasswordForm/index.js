@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CHANGE_PASSWORD } from '../../utils/mutations'
 import { useMutation } from '@apollo/client';
+import ErrorMessage from '../ErrorMessage'
 
 const ChangePasswordForm = ( ) => {
 
@@ -55,8 +56,6 @@ const ChangePasswordForm = ( ) => {
         }
    }
 
-    console.log( passLengthState )
-
     const [ updatePW, { error }] = useMutation(CHANGE_PASSWORD, {
         update() {
             try {
@@ -86,6 +85,12 @@ const ChangePasswordForm = ( ) => {
             }
         }
 
+    }
+
+    if( error ){
+        return (
+          <ErrorMessage />
+        )
     }
 
     return (

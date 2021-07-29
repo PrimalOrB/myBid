@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { ADD_AUCTION } from '../../utils/mutations'
 import { useMutation } from '@apollo/client';
+import ErrorMessage from '../ErrorMessage'
 
 const AuctionForm = ( ) => {
 
     const [formState, setFormState] = useState({ title: null, description: null, reserve: 0, endDate: null });
 
     const handleChange = (event) => {
-        const { name, value, type } = event.target;
+        const { name, value } = event.target;
         setFormState({
             ...formState,
             [name]: value ,
@@ -45,6 +46,12 @@ const AuctionForm = ( ) => {
             }
         }
 
+    }
+
+    if( error ){
+        return (
+          <ErrorMessage />
+        )
     }
 
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_AUCTIONS } from '../../utils/queries'
 import Loading from '../Loading'
-import OwnedItem from '../OwnedItem'
+import ErrorMessage from '../ErrorMessage'
 
 const OwnedBids = ( { userId }) => {
 
@@ -16,7 +16,7 @@ const OwnedBids = ( { userId }) => {
 
   if( error ){
     return (
-      <h1>Error</h1>
+      <ErrorMessage />
     )
   }
 

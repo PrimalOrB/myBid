@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_AUCTIONS } from '../../utils/queries'
 import Loading from '../Loading'
 import AuctionItem from '../AuctionItem'
+import ErrorMessage from '../ErrorMessage'
 
 const AuctionList = () => {
 
@@ -16,7 +17,7 @@ const AuctionList = () => {
 
   if( error ){
     return (
-      <h1>Error</h1>
+      <ErrorMessage />
     )
   }
 

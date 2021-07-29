@@ -3,6 +3,7 @@ import { ADD_AUCTION } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import Loading from '../components/Loading'
+import ErrorMessage from '../components/ErrorMessage'
 
 const AddAuction = ( ) => {
 
@@ -11,7 +12,7 @@ const AddAuction = ( ) => {
     const [formState, setFormState] = useState({ title: '', description: '', reserve: 0, endDate: '' });
 
     const handleChange = (event) => {
-        const { name, value, type } = event.target;
+        const { name, value } = event.target;
         setFormState({
             ...formState,
             [name]: value ,
@@ -26,7 +27,13 @@ const AddAuction = ( ) => {
                 console.error(e);
             }
         }
-      });
+    });
+
+    if( error ){
+        return (
+            <ErrorMessage />
+        )
+    }
       
 
     const handleSubmit = async event =>{
