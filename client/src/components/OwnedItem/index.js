@@ -19,7 +19,6 @@ const OwnedItem = ( { auction } ) => {
 
   return (
     <>
-        { timeLeft.seconds > 0 && 
         <article className='card'>
             <span className='card-title'>{ auction.title }</span>
             <span className='card-desc'>{ auction.description }</span>
@@ -49,7 +48,6 @@ const OwnedItem = ( { auction } ) => {
             }
             </div>
         </article>
-        }
     </>
   );
 };
