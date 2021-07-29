@@ -2,12 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: 1px solid black */
+  border: 1px solid black;
 }
 
 #root {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   background-color: darkcyan;
@@ -22,14 +23,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height:100px;
+  height: 100px;
   background-color: lightskyblue;
 }
 
 /*company name*/
 a {
   text-decoration: none;
-  color:#301934;
+  color: #301934;
   font-size: 1.5rem;
   padding: 0.75rem;
 }
@@ -41,13 +42,13 @@ header h1 {
 }
 
 /*gavel*/
-svg{
-  color:#301934;
+svg {
+  color: #301934;
   margin-right: 0.5rem;
 }
 
 /*hiding the nav bar*/
-nav{
+nav {
   background-color: lightskyblue;
   box-shadow: none;
   display: flex;
@@ -67,9 +68,8 @@ nav svg {
 
 /*font for the nav*/
 li {
-  font-family:'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
-
 
 .page-container {
   width: 100%;
@@ -103,7 +103,7 @@ main h1 {
 /*title fonts*/
 .form-container h4 {
   text-align: center;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 /*form styles*/
@@ -125,9 +125,9 @@ form {
 }
 
 /*btn color*/
-.btn{
+.btn {
   background-color: #301934;
-  border-radius: 25px
+  border-radius: 25px;
 }
 
 /*footer style*/
@@ -146,18 +146,14 @@ footer h2 {
   text-align: center;
 }
 
-h2{
-  margin:0;
-  font-size:1rem
-
+h2 {
+  margin: 0;
+  font-size: 1rem;
 }
-
-
 
 /* added */
 .auction-list {
   width: 90%;
-  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -201,9 +197,8 @@ h2{
 }
 
 .owned-list .card {
-  width: 100%
+  width: 100%;
 }
-
 
 .card-title {
   font-size: large;
@@ -262,9 +257,9 @@ h2{
 }
 
 /* matertialize override temp */
-input[type="checkbox"]:not(:checked), 
-input[type="checkbox"]:checked{
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
   opacity: 1;
-  position:initial;
+  position: initial;
   pointer-events: all;
 }

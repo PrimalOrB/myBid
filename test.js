@@ -83,7 +83,7 @@ function processAuction( auction, bidders ){
         }
     }
 
-    console.log( bids, auction )
+    console.log( bidders, auction )
     //     console.log( auction )
 }
 processAuction( auctionObj, biddersArr )
