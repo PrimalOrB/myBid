@@ -1,5 +1,6 @@
 export function paddedNumber ( number ) {
     var s = String( number );
+    console.log( s, s.length )
     while (s.length < 2 ) {s = "0" + s;}
     return s;
 }
@@ -9,7 +10,7 @@ export function calculateTimeLeft( endDate) {
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)) > 0 && Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60)
