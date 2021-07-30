@@ -8,11 +8,9 @@
 //Use third party API to calculate shipping and tax cost and not you dealing with many of Stripe functions
 
 //STEPS
-//errors, match models with server: typedefs, resolvers, client: queries and mutations
-//test stripe on graphql the main query for session id before moving any further with testing, fake data testing
-//query checkout($products: [ID]!) {checkout(products: $products) {session}}, you will use product ids
-//all stripe mutations have to be checked and then queries, all related to stripe
-//front end test
+//match models with server: typedefs, resolvers, client: queries and mutations
+//test stripe on graphql for all above (especially session id)
+//fake data testing front end test, price selection connection to cart - appearance of cart and checkout options
 
 import React, { createContext, useContext } from "react";
 import { useAuctionReducer } from './reducers'
@@ -23,8 +21,7 @@ const { Provider } = StoreContext;
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useAuctionReducer({
     auctions: [],
-    cart: [],
-    cartOpen: false,
+    cart: [{title: "dummy1", price: 123.00 }, {title: "dummy2", price: 167.00}, {title: "dummy3", price: 450.00}]
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
