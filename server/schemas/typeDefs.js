@@ -55,6 +55,7 @@ type Auction {
     activeStatus: Boolean
     auctionInfo: Result
     auctionInfoStore: Result
+    currentBid: Int
 }
 
 type Result {

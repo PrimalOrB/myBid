@@ -10,7 +10,7 @@ const OwnedBids = ( { bids, user, type }) => {
     { 
       <>
         <ul className='owned-list'>
-        <h2>Active Bids</h2>
+        { type === 'active' ? <h2>Active Bids</h2> : <h2>Completed Bids</h2> }
         { bids.map( bid => {
           return <OwnedBidsCard key={ bid.bid._id } bid={ bid.bid } auction={ bid.auction } user={ user} type={ type } />
           })    

@@ -127,6 +127,7 @@ export const QUERY_AUCTION = gql`
         increment
         incrementing
       }
+      currentBid
     }
   }
 `;

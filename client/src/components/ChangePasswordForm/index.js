@@ -102,8 +102,8 @@ const ChangePasswordForm = ( ) => {
                 <input type="password" name="newPassword" onChange={ handleChange }/>
                 <label htmlFor="newPasswordRe" onChange={ handleChange }>Re-type New Password</label>
                 <input type="password" name="newPasswordRe" onChange={ handleChange }/>
-                { !passLengthState && <div>Password must be 5 characters long</div> }
-                { !matchingPassState && <div>New passwords do not match</div> }
+                { !passLengthState && <div>* Password must be 5 characters long</div> }
+                { !matchingPassState && <div>* New passwords do not match</div> }
                 { ( matchingPassState && passLengthState ) && <button type="submit">Change Password</button>  }
             </form>
         </>

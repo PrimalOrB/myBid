@@ -60,6 +60,7 @@ const AddAuction = ( ) => {
 
     return (
         <>
+        <h1>Create New Auction</h1>
         { loggedIn ? (
             <form name="auction-form" className='auction-form' autoComplete="off" onSubmit={ handleSubmit }>
                 <label htmlFor="title" onChange={ handleChange }>Title</label>

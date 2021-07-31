@@ -87,7 +87,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="profile-container">
+    <h1>{ user.username }</h1>
         <div className="profile-header">
           <div className="profile-menu">
           {views.map( ( menuItem, i ) => {
@@ -102,10 +102,10 @@ const Profile = () => {
           }
           </div>
           <div className="profile-opts">
-            <span>{ `Username: ${ user.username }` }</span>
             <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
           </div>
         </div>
+      <div className="profile-container">
         <div className="profile-items">
           { profileView === views[0] && <OwnedBids bids={ activeBids } user={ user._id} type='active'/>}
           { profileView === views[1] && <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>}

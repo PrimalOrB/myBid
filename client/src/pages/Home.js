@@ -1,10 +1,7 @@
 import React, {useEffect} from 'react';
-import Auth from '../utils/auth';
 import AuctionList from "../components/AuctionList";
 
 const Home = () => {
-
-  const loggedIn = Auth.loggedIn();
 
   useEffect(() => {
     return () => {
@@ -14,18 +11,9 @@ const Home = () => {
 
   return (
     <>
-        {loggedIn ? (
-          <>
-            <AuctionList />
-          </>
-        ) : 
-          <>
-            Logged Out
-          </>
-        }
+    <h1>Current Auctions</h1>
+    <AuctionList />
     </>
-  
-
   );
 };
 

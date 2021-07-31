@@ -115,21 +115,19 @@ const resolvers = {
         throw new AuthenticationError('Not logged in');
     },
     auctions: async (parent, args, context) => {
-      if (context.user) {
         return Auction.find()
         .populate('bids');
-      }
-    throw new AuthenticationError('Not logged in');
     },
     auction: async (parent, { id }, context) => {
       if (context.user) {
-        return Auction.findOne({ _id: id })
-        .populate('bids');
+        const matchAuction = await Auction.findOne({ _id: id })
+          .populate('bids');
+
+        return matchAuction
       }
       throw new AuthenticationError('Not logged in');
     },
     auctionsByOwner: async (parent, args, context) => {
-      console.log(context.user._id)
       if (context.user) {
         return Auction.find({ ownerId: context.user._id })
         .populate('bids');
@@ -140,7 +138,6 @@ const resolvers = {
 
   Mutation: {
     addOrder: async (parent, { auctions }, context) => {
-      console.log(context);
       if (context.user) {
         const order = new Order({ auctions });
 

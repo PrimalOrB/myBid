@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import { GiGavel } from 'react-icons/gi'
-import { GrAddCircle } from 'react-icons/gr'
 import { CgProfile } from  'react-icons/cg'
-import { RiLogoutCircleRLine } from 'react-icons/ri'
+import { RiLogoutCircleRLine, RiAddCircleLine, RiLoginCircleLine, RiCreativeCommonsByLine } from 'react-icons/ri'
 import { FiShoppingCart } from 'react-icons/fi'
 
 const Header = () => {
@@ -15,7 +14,7 @@ const Header = () => {
 
   return (
     <header>
-      <Link to="/">
+      <Link to="/" className="logo-link">
         <h1>
           <GiGavel />
           myBid
@@ -25,21 +24,15 @@ const Header = () => {
       <nav>
         {Auth.loggedIn() ? (
           <>
-            <Link to="/new"><GrAddCircle />New Auction</Link>
+            <Link to="/new"><RiAddCircleLine />New Auction</Link>
             <Link to="/profile"><CgProfile />Profile</Link>
             <Link to="/cart"><FiShoppingCart /></Link>
             <Link to="/" onClick={logout}><RiLogoutCircleRLine />Logout</Link>
           </>
         ) : (
           <>
-            <ul className="right hide-on-med-and-down">
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-            </ul>
+            <Link to="/login"><RiLoginCircleLine />Login</Link>
+            <Link to="/signup"><RiCreativeCommonsByLine />Signup</Link>
           </>
         )}
       </nav>

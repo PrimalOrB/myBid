@@ -1,3 +1,19 @@
+:root {
+  --primary-color: hsla(204, 53%, 20%, 1);
+  --secondary-color: hsla(204, 53%, 45%, 1);
+  --tertiary-color: hsla(204, 25%, 90%, 1);
+  --white-full: rgba(255, 255, 255, 1);
+  --white-fade-hard: rgba(255, 255, 255, 0.75);
+  --white-fade-soft: rgba(255, 255, 255, 0.25);
+  --black-fade-soft: rgba(0, 0, 0, 0.35);
+  --gray: rgba(180, 180, 180, 1);
+  --gray-fade-hard: rgba(180, 180, 180, 0.75);
+  --gray-fade-soft: rgba(180, 180, 180, 0.25);
+  --shadow: rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +27,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: var(--primary-color);
 }
 
 a {
@@ -22,23 +38,48 @@ a {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   height: 100px;
-  background-color: lightskyblue;
+  background-color: var(--secondary-color);
+  transform: translateY(-1.8rem);
+  border-bottom: 0.5rem solid var(--primary-color);
 }
 
 /*company name*/
 a {
   text-decoration: none;
-  color: #301934;
+  color: var(--white-full);
   font-size: 1.5rem;
   padding: 0.75rem;
+}
+
+a:visited {
+  color: var(--white-full);
+}
+
+.logo-link {
+  padding: 0.25rem 5rem 0.75rem 0.75rem;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+  background-color: var(--primary-color);
+  transform: translateY(1.5rem);
+  box-shadow: 5px 10px;
+  transition: 0.25s ease all;
+}
+
+.logo-link:hover {
+  background-color: var(--secondary-color);
+}
+
+.logo-link svg {
+  color: var(--white-full);
 }
 
 /*company name position*/
 header h1 {
   display: flex;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 /*gavel*/
@@ -49,19 +90,52 @@ svg {
 
 /*hiding the nav bar*/
 nav {
-  background-color: lightskyblue;
+  background-color: var(--secondary-color);
   box-shadow: none;
   display: flex;
   justify-content: flex-end;
 }
 
-nav a,
-nav div {
-  display: flex;
-  align-items: center;
+nav svg {
+  transition: 0.25s ease all;
+  color: var(--white-full);
+  stroke: var(--white-full);
+  fill: var(--white-full);
 }
 
-nav svg {
+nav ul a,
+nav div,
+nav a {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+nav li,
+nav a {
+  border-left: 2px solid var(--white-full);
+  background-color: var(--secondary-color);
+  transition: 0.25s ease all;
+}
+
+nav ul li:first-child,
+nav a:first-child {
+  border: none;
+}
+
+nav a:hover,
+nav div:hover {
+  background-color: var(--white-fade-soft);
+  color: var(--primary-color);
+}
+
+nav a:hover svg {
+  color: var(--primary-color);
+  stroke: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+nav ul a nav svg {
   width: 2rem;
   height: 2rem;
 }
@@ -77,24 +151,29 @@ li {
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 /*main body*/
 main {
-  height: 100%;
-  background-color: white;
+  height: auto;
+  background-color: var(--tertiary-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: top;
   padding: 1rem;
+  margin-top: -1.8rem;
 }
 
 main h1 {
   width: 100%;
+  font-size: 3rem;
+  color: var(--primary-color);
   text-align: center;
-  margin: 0 0 1rem 0;
+  padding: 0 0 1rem;
+  margin: 0;
+  border-bottom: 0.5rem solid var(--primary-color);
 }
 
 .form-container {
@@ -136,11 +215,12 @@ form {
 footer {
   text-align: center;
   justify-content: flex-start;
-  background-color: lightskyblue;
+  background-color: var(--secondary-color);
   height: 65px;
   display: flex;
   align-content: center;
   align-items: center;
+  color: var(--white-full);
 }
 
 footer h2 {
@@ -168,7 +248,6 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightgray;
   margin: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -200,7 +279,18 @@ h2 {
   height: auto;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  border: 1px solid black;
+  border: 1px solid var(--primary-color);
+  background-color: var(--white-fade-hard);
+}
+
+.password-form div,
+.bid-form div,
+.login-form div,
+.signup-form div {
+  color: red;
+  font-style: italic;
+  width: 100%;
+  text-align: center;
 }
 
 .owned-list .card {
@@ -245,13 +335,27 @@ h2 {
   color: red;
 }
 
-.add-bid span {
+.add-bid span,
+button {
+  color: var(--white-full);
+  outline: none;
+  border: none;
   display: block;
   text-align: center;
   font-size: larger;
   width: 100%;
   border-radius: 0.3rem;
-  background-color: rgb(170, 224, 168);
+  background-color: var(--secondary-color);
+  transition: 0.25s ease all;
+}
+
+button {
+  padding: 0.5rem 0;
+}
+
+.add-bid span:hover,
+button:hover {
+  background-color: green;
 }
 
 .profile-container {
@@ -306,23 +410,54 @@ input[type="checkbox"]:checked {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+  padding: 0.1rem 0;
+  background-color: var(--primary-color);
+  transform: translateY(-0.7rem);
 }
 
 .change-pw,
 .profile-header span {
-  background-color: lightskyblue;
+  background-color: var(--primary-color);
+  color: var(--white-full);
   font-size: 1rem;
   padding: 0.25rem 0.75rem;
-  border-radius: 0.75rem;
-  margin: 0 0.5rem;
   transition: 0.25s ease all;
+  border-right: 2px solid var(--white-full);
+}
+
+.profile-menu:last-child {
+  border: none;
+}
+
+.change-pw {
+  border: none;
 }
 
 .change-pw:hover,
 .profile-header span:hover {
-  background-color: rgba(135, 206, 250, 0.5);
+  background-color: var(--secondary-color);
 }
 
 .active-menu {
-  background-color: rgba(135, 206, 250, 0.5) !important;
+  background-color: var(--secondary-color) !important;
+}
+
+input {
+  text-align: center;
+}
+
+input:focus,
+input:active {
+  border-bottom: 1px solid var(--primary-color) !important;
+  box-shadow: 0 1px 0 0 var(--primary-color) !important;
+}
+
+label {
+  color: var(--primary-color) !important;
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:active {
+  border-bottom: none !important;
+  box-shadow: none !important;
 }

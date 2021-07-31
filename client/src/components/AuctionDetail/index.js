@@ -30,10 +30,11 @@ const { loading, data, error  } = useQuery(QUERY_AUCTION,{
 
   return (
     <>
-        <div className="place-bid-container">
-            <AuctionItem key={ data.auction._id } auction={ data.auction } addBid={ false }/>
-            <BidForm auctionId={ _id } />
-        </div>
+      <h1>Add Bid</h1>
+      <div className="place-bid-container">
+          <AuctionItem key={ data.auction._id } auction={ data.auction } addBid={ false }/>
+          <BidForm auctionId={ _id } currentBid={ data.auction.auctionInfo.currentBid } />
+      </div>
     </>
   );
 };
