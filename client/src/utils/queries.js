@@ -30,6 +30,22 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      auctions{
+        _id
+        ownerId
+        title
+        description
+        reserve
+        createdAt
+        endDate
+        activeStatus
+        auctionInfoStore {
+          bidCount
+          reserveMet
+          currentBid
+          currentLeader
+        }
+      }
     }
   }
 `;
@@ -71,6 +87,35 @@ export const QUERY_AUCTION = gql`
       title
       description
       reserve
+      endDate
+      activeStatus
+      auctionInfo {
+        bidCount
+        reserveMet
+        currentBid
+        currentLeader
+      }
+      bids {
+        _id
+        userId
+        auctionId
+        maxBid
+        increment
+        incrementing
+      }
+    }
+  }
+`;
+
+export const QUERY_AUCTIONS_BY_OWNER = gql`
+  query auctionsByOwner {
+    auctionsByOwner{
+      _id
+      ownerId
+      title
+      description
+      reserve
+      createdAt
       endDate
       activeStatus
       auctionInfo {

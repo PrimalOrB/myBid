@@ -30,11 +30,11 @@ const OwnedItem = ( { auction, type } ) => {
                         :
                             <span>Current Bid:</span>
                         }
-                        <span>${ auction.auctionInfo.currentBid.toFixed(2) }</span>
+                        <span>${ auction.auctionInfoStore.currentBid.toFixed(2) }</span>
                     </div>
                     <div>
                         <span>Number Of Bids:</span>
-                        <span>{ auction.auctionInfo.bidCount }</span>
+                        <span>{ auction.auctionInfoStore.bidCount }</span>
                     </div>
                 </div>
                 <div className="card-status">
@@ -45,7 +45,7 @@ const OwnedItem = ( { auction, type } ) => {
                         </span>        
                     </span>
                 }
-                { auction.auctionInfo.reserveMet ? ( 
+                { auction.auctionInfoStore.reserveMet ? ( 
                     <span className='reserve-met'>Reserve Met</span> 
                     ) : ( 
                     <span className='reserve-not'>Reserve Not Met</span>

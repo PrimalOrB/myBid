@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_AUCTIONS } from '../../utils/queries'
 import Loading from '../Loading'
@@ -6,6 +6,12 @@ import AuctionItem from '../AuctionItem'
 import ErrorMessage from '../ErrorMessage'
 
 const AuctionList = () => {
+
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up AuctionList");
+    };
+  }, []);
 
   let { data, loading, error } = useQuery( QUERY_AUCTIONS, { pollInterval: 30000 } ); // query every 30 seconds
 

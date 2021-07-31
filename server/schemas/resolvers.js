@@ -72,7 +72,16 @@ const resolvers = {
           const userData = await User.findOne({ _id: context.user._id })
             .select('-__v -password')  
             .populate('auctions') 
-            .populate('bids');      
+            .populate('bids');   
+            
+          if( userData.auctions.length > 0 ){
+            for( let i = 0; i < userData.auctions.length; i++){
+              // populate and store the virtual props of auction as it was not reachable within the me query on the front end
+              const auctionData = await Auction.findOne({ _id: userData.auctions[i]._id })
+                .populate('bids'); 
+                userData.auctions[i].auctionInfoStore = auctionData.auctionInfo
+            }
+          }  
           return userData;
         }
         throw new AuthenticationError('Not logged in');
@@ -105,6 +114,14 @@ const resolvers = {
     auction: async (parent, { id }, context) => {
       if (context.user) {
         return Auction.findOne({ _id: id })
+        .populate('bids');
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    auctionsByOwner: async (parent, args, context) => {
+      console.log(context.user._id)
+      if (context.user) {
+        return Auction.find({ ownerId: context.user._id })
         .populate('bids');
       }
       throw new AuthenticationError('Not logged in');
