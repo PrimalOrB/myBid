@@ -43,13 +43,40 @@ const Profile = () => {
   // sort list of arrays by closest expiry
   currentList.sort((a,b) => a.endDate - b.endDate)
 
+  // filter for most current bids by user for each auction
+  const currentBids = {}
+  user.bids.map( ( bid, i ) => {
+    if( !currentBids[bid.auctionId] ){
+      currentBids[bid.auctionId] = {}
+      currentBids[bid.auctionId].bid = bid
+      currentBids[bid.auctionId].auction = user.bidsStore[i]
+    } else {
+      if( bid.createdAt > currentBids[bid.auctionId].bid.createdAt ){
+        console.log( 'updated' )
+        currentBids[bid.auctionId].bid = bid
+      } else {
+        console.log( 'not updated' )
+      }
+    }
+  })
+
+  const activeBids = []
+  Object.values( currentBids ).map( ( auction, i ) => {
+      if( auction.auction.activeStatus === true ){
+        return activeBids.push( auction )
+      }
+      return
+  } )
+
   return (
     <>
       <div className="profile-container">
-        <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
-        <h1>{ `Profile component - ${ user.username } logged in` }</h1>
+        <div className="profile-header">
+          <span>{ `Username: ${ user.username }` }</span>
+          <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
+        </div>
         <div className="profile-items">
-          {/* <OwnedBids userId={ user._id }/> */}
+          <OwnedBids bids={ activeBids } user={ user._id} />
           <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>
           <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions' type='closed'/>
         </div>

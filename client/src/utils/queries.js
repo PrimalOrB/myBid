@@ -46,6 +46,30 @@ export const QUERY_ME = gql`
           currentLeader
         }
       }
+      bidsStore {
+        _id
+        ownerId
+        title
+        description
+        reserve
+        createdAt
+        endDate
+        activeStatus
+        auctionInfo {
+          bidCount
+          reserveMet
+          currentBid
+          currentLeader
+        }
+      }
+      bids {
+        _id
+        createdAt
+        auctionId
+        maxBid
+        increment
+        incrementing
+      }
     }
   }
 `;

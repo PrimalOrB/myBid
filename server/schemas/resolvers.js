@@ -81,6 +81,16 @@ const resolvers = {
                 .populate('bids'); 
                 userData.auctions[i].auctionInfoStore = auctionData.auctionInfo
             }
+          }
+          if( userData.bids.length > 0 ){
+            //create empty store prop
+            userData.bidsStore = []
+            for( let i = 0; i < userData.bids.length; i++){
+              // populate and store the virtual props of auction as it was not reachable within the me query on the front end
+              const auctionData = await Auction.findOne({ _id: userData.bids[i].auctionId })
+                .populate('bids'); 
+              userData.bidsStore.push( auctionData )
+            }
           }  
           return userData;
         }

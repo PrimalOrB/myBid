@@ -234,11 +234,13 @@ h2 {
   width: 100%;
 }
 
-.reserve-met {
+.reserve-met,
+.winning {
   color: green;
 }
 
-.reserve-not {
+.reserve-not,
+.losing {
   color: red;
 }
 
@@ -279,12 +281,6 @@ input[type="checkbox"]:checked {
   pointer-events: all;
 }
 
-.change-pw {
-  background-color: lightskyblue;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.75rem;
-}
-
 .bid-value,
 .bid-count {
   animation-name: bid-color;
@@ -301,4 +297,20 @@ input[type="checkbox"]:checked {
   to {
     color: black;
   }
+}
+
+.profile-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.change-pw,
+.profile-header span {
+  background-color: lightskyblue;
+  font-size: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.75rem;
+  margin: 0 0.5rem;
 }

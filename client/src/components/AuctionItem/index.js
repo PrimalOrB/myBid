@@ -33,17 +33,17 @@ const AuctionItem = ( { auction, addBid } ) => {
                 </div>
             </div>
             <div className="card-status">
-            <span>Time Remaining:
-                <span className='remaining'> { ( timeLeft.days && `${timeLeft.days} days, ` ) }
-                { `${ paddedNumber( timeLeft.hours ) }:${ paddedNumber( timeLeft.minutes ) }:${ paddedNumber( timeLeft.seconds ) }` }
-                </span>        
-            </span>
-            { auction.auctionInfo.reserveMet ? ( 
-                <span className='reserve-met'>Reserve Met</span> 
-                ) : ( 
-                <span className='reserve-not'>Reserve Not Met</span>
-                ) 
-            }
+                <span>Time Remaining:
+                    <span className='remaining'> { ( timeLeft.days && `${timeLeft.days} days, ` ) }
+                    { `${ paddedNumber( timeLeft.hours ) }:${ paddedNumber( timeLeft.minutes ) }:${ paddedNumber( timeLeft.seconds ) }` }
+                    </span>        
+                </span>
+                { auction.auctionInfo.reserveMet ? ( 
+                    <span className='reserve-met'>Reserve Met</span> 
+                    ) : ( 
+                    <span className='reserve-not'>Reserve Not Met</span>
+                    ) 
+                }
             </div>
             { ( loggedIn && addBid ) && (
             <div className="add-bid">
