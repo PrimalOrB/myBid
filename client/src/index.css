@@ -207,8 +207,12 @@ form {
 
 /*btn color*/
 .btn {
-  background-color: #301934;
+  background-color: var(--primary-color);
   border-radius: 25px;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
 }
 
 /*footer style*/

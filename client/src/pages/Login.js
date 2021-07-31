@@ -55,7 +55,7 @@ const Login = (props) => {
             value={formState.password}
             onChange={handleChange}
           />
-          <button type='submit'className="btn waves-effect waves-light">
+          <button type='submit'className="btn">
             <i className ="material-icons center">Submit</i>
           </button>
           {error && <div>* Login failed</div>}
