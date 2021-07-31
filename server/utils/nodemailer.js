@@ -24,9 +24,9 @@ module.exports = {
     let mailOptions
     switch ( type ){
       case 'signup':
-        emailRecipient = 'mybid.platform@gmail.com'
+        // emailRecipient = 'mybid.platform@gmail.com'
             // would be uncommented for use so it can send to the signed up user
-        // emailRecipient = data.email
+        emailRecipient = data.email
             // mail template
         mailOptions = {
             from: process.env.EMAIL_ACCOUNT,
@@ -34,15 +34,15 @@ module.exports = {
             subject: `Thank you for signing up with myBid`,
             generateTextFromHTML: true,
             html: `
-            <b>myBid</b><br/>
+            <a href="https://mybid-live.herokuapp.com/"><b>myBid</b></a><br/>
             Thank you for signing up ${ data.username } <br/>
             `
           };
         break
       case 'password':
-        emailRecipient = 'mybid.platform@gmail.com'
+        // emailRecipient = 'mybid.platform@gmail.com'
             // would be uncommented for use so it can send to the signed up user
-        // emailRecipient = data.email
+        emailRecipient = data.email
             // mail template
         mailOptions = {
             from: process.env.EMAIL_ACCOUNT,
@@ -50,7 +50,7 @@ module.exports = {
             subject: `myBid Password change`,
             generateTextFromHTML: true,
             html: `
-            <b>myBid Password Change Notification</b><br/>
+            <a href="https://mybid-live.herokuapp.com/"><b>myBid Password Change Notification</b></a><br/>
             Hello ${ data.username }, this email is to verify that your <b>myBid</b> account password has been updated! <br/>
             `
           };
