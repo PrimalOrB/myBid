@@ -6,7 +6,7 @@ import { GrAddCircle } from 'react-icons/gr'
 import { CgProfile } from  'react-icons/cg'
 import { RiLogoutCircleRLine } from 'react-icons/ri'
 import { FiShoppingCart } from 'react-icons/fi'
-import Cart from "../Cart";
+import Checkout from "../Checkout";
 
 const Header = () => {
   const logout = (event) => {
@@ -28,8 +28,8 @@ const Header = () => {
           <>
             <Link to="/new"><GrAddCircle />New Auction</Link>
             <Link to="/profile"><CgProfile />Profile</Link>
-            <Link to="/cart"><FiShoppingCart /></Link>
-            {/* <Cart /> */}
+            <Link to="/Checkout"><FiShoppingCart /></Link>
+            {/* <Checkout /> */}
             <Link to="/" onClick={logout}><RiLogoutCircleRLine />Logout</Link>
           </>
         ) : (

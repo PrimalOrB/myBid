@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
   REMOVE_FROM_CART,
@@ -14,6 +12,7 @@ import {
 import { QUERY_AUCTIONS } from '../utils/queries';
 import { idbPromise } from '../utils/helpers';
 import spinner from '../assets/spinner.gif';
+import Checkout from '../components/Checkout';
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -23,7 +22,7 @@ function Detail() {
 
   const { loading, data } = useQuery(QUERY_AUCTIONS);
 
-  const { auctions, cart } = state;
+  const { auctions, checkout } = state;
 
   useEffect(() => {
     // already in global store
@@ -53,14 +52,14 @@ function Detail() {
   }, [auctions, data, loading, dispatch, id]);
 
   const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    const itemInCart = checkout.find((cartItem) => cartItem._id === id);
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: id,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
-      idbPromise('cart', 'put', {
+      idbPromise('checkout', 'put', {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
@@ -69,7 +68,7 @@ function Detail() {
         type: ADD_TO_CART,
         auction: { ...currentAuction, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...currentAuction, purchaseQuantity: 1 });
+      idbPromise('checkout', 'put', { ...currentAuction, purchaseQuantity: 1 });
     }
   };
 
@@ -79,12 +78,12 @@ function Detail() {
       _id: currentAuction._id,
     });
 
-    idbPromise('cart', 'delete', { ...currentAuction });
+    idbPromise('checkout', 'delete', { ...currentAuction });
   };
 
   return (
     <>
-      {currentAuction && cart ? (
+      {currentAuction && checkout ? (
         <div className="container my-1">
           <Link to="/">← Back to Auctions</Link>
 
@@ -96,7 +95,7 @@ function Detail() {
             <strong>Price:</strong>${currentAuction.price}{' '}
             <button onClick={addToCart}>Add to Cart</button>
             <button
-              disabled={!cart.find((p) => p._id === currentAuction._id)}
+              disabled={!checkout.find((p) => p._id === currentAuction._id)}
               onClick={removeFromCart}
             >
               Remove from Cart
@@ -110,7 +109,8 @@ function Detail() {
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
-      <Cart />
+      {/* this needs to be checked */}
+      <Checkout/>
     </>
   );
 }

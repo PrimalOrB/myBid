@@ -15,7 +15,7 @@ import { useLazyQuery } from '@apollo/client';
 //importing to get unique session ID for specific product for stripe transaction 
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-import CartItem from '../CartItem';
+// import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
@@ -26,7 +26,7 @@ import './style.css';
 //React. We'll use this stripePromise object to perform the checkout redirect
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-const Cart = () => {
+const Checkout = () => {
   const [state, dispatch] = useStoreContext();
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -42,23 +42,23 @@ const Cart = () => {
 //adding cart items to stripe, the actual happening of transaction is not evident from code, will become
 // more evident when actually doing it, chances are stripe will control trasaction part built in 
   useEffect(() => {
-    async function getCart() {
-      const cart = await idbPromise('cart', 'get');
-      dispatch({ type: ADD_MULTIPLE_TO_CART, auctions: [...cart] });
+    async function getCheckout() {
+      const checkout = await idbPromise('checkout', 'get');
+      dispatch({ type: ADD_MULTIPLE_TO_CART, auctions: [...checkout] });
     }
 
-    if (!state.cart.length) {
-      getCart();
+    if (!state.checkout.length) {
+      getCheckout();
     }
-  }, [state.cart.length, dispatch]);
+  }, [state.checkout.length, dispatch]);
 
-  function toggleCart() {
-    dispatch({ type: TOGGLE_CART });
+  function toggleCheckout() {
+    dispatch({ type: TOGGLE_CHECKOUT });
   }
 
   function calculateTotal() {
     let sum = 0;
-    state.cart.forEach((item) => {
+    state.checkout.forEach((item) => {
       sum += item.price * item.purchaseQuantity;
     });
     return sum.toFixed(2);
@@ -67,7 +67,7 @@ const Cart = () => {
   function submitCheckout() {
     const auctionIds = [];
 
-    state.cart.forEach((item) => {
+    state.checkout.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         auctionIds.push(item._id);
       }
@@ -78,9 +78,9 @@ const Cart = () => {
     });
   }
 
-  if (!state.cartOpen) {
+  if (!state.checkoutOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
+      <div className="cart-closed" onClick={toggleCheckout}>
         <span role="img" aria-label="trash">
           🛒
         </span>
@@ -90,14 +90,14 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
+      <div className="close" onClick={toggleCheckout}>
         [close]
       </div>
       <h2>Shopping Cart</h2>
-      {state.cart.length ? (
+      {state.checkout.length ? (
         <div>
-          {state.cart.map((item) => (
-            <CartItem key={item._id} item={item} />
+          {state.chekout.map((item) => (
+            <CheckoutItem key={item._id} item={item} />
           ))}
 
           <div className="flex-row space-between">
@@ -122,4 +122,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Checkout;
