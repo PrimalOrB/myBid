@@ -25,11 +25,11 @@ const AuctionItem = ( { auction, addBid } ) => {
             <div className='card-current'>
                 <div>
                     <span>Current Bid:</span>
-                    <span>${ auction.auctionInfo.currentBid.toFixed(2) }</span>
+                    <span key={ auction.auctionInfo.currentBid.toFixed(2) } className='bid-value'>${ auction.auctionInfo.currentBid.toFixed(2) }</span>
                 </div>
                 <div>
                     <span>Number Of Bids:</span>
-                    <span>{ auction.auctionInfo.bidCount }</span>
+                    <span key={ auction.auctionInfo.bidCount } className='bid-count'>{ auction.auctionInfo.bidCount }</span>
                 </div>
             </div>
             <div className="card-status">

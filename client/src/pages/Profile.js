@@ -13,7 +13,7 @@ const Profile = () => {
     };
   }, []);
 
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME, { pollInterval: 30000 });
 
   const user = data?.me || data?.user || {};
 
@@ -51,7 +51,7 @@ const Profile = () => {
         <div className="profile-items">
           {/* <OwnedBids userId={ user._id }/> */}
           <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>
-          <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions'/>
+          <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions' type='closed'/>
         </div>
       </div>
     </>

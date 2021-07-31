@@ -284,3 +284,21 @@ input[type="checkbox"]:checked {
   padding: 0.25rem 0.75rem;
   border-radius: 0.75rem;
 }
+
+.bid-value,
+.bid-count {
+  animation-name: bid-color;
+  animation-duration: 4s;
+  font-weight: bold;
+  padding-left: 0.25rem;
+  /* color: black; */
+}
+
+@keyframes bid-color {
+  from {
+    color: green;
+  }
+  to {
+    color: black;
+  }
+}
