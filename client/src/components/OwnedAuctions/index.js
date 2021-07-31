@@ -3,6 +3,8 @@ import OwnedItem from '../OwnedItem'
 
 const OwnedAuctions = ( { title, auctions, type }) => {
 
+  auctions = auctions.sort( ( a, b ) => a.endDate - b.endDate ) 
+
   return (
     <>
     { 

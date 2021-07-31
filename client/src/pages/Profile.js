@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import OwnedAuctions from '../components/OwnedAuctions'
@@ -6,6 +6,15 @@ import OwnedBids from '../components/OwnedBids'
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
+
+  const views = [ 'Active Bids', 'Your Active Auctions', 'Your Closed Auctions', 'Your Completed Bids']
+
+  
+  const [profileView, setProfileView] = useState( views[0] );
+  
+  function handleMenuClick( index ){
+    setProfileView( views[index] )
+  }
 
   useEffect(() => {
     return () => {
@@ -68,17 +77,40 @@ const Profile = () => {
       return
   } )
 
+  const endedBids = []
+  Object.values( currentBids ).map( ( auction, i ) => {
+      if( auction.auction.activeStatus === false ){
+        return endedBids.push( auction )
+      }
+      return
+  } )
+
   return (
     <>
       <div className="profile-container">
         <div className="profile-header">
-          <span>{ `Username: ${ user.username }` }</span>
-          <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
+          <div className="profile-menu">
+          {views.map( ( menuItem, i ) => {
+              return <span key={ menuItem } className={ menuItem == profileView ? 'active-menu' : '' } onClick={ () => handleMenuClick( i ) }>
+                { `${ menuItem } 
+                ${  menuItem === views[0] ? `( ${activeBids.length} )` : ""} 
+                ${  menuItem === views[1] ? `( ${currentList.length} )` : ""} 
+                ${  menuItem === views[2] ? `( ${closedList.length} )` : ""}
+                ${  menuItem === views[3] ? `( ${endedBids.length} )` : ""}` }
+                </span>
+            })
+          }
+          </div>
+          <div className="profile-opts">
+            <span>{ `Username: ${ user.username }` }</span>
+            <Link to={ '/changepw' } className='change-pw'>Change Password</Link> 
+          </div>
         </div>
         <div className="profile-items">
-          <OwnedBids bids={ activeBids } user={ user._id} />
-          <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>
-          <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions' type='closed'/>
+          { profileView === views[0] && <OwnedBids bids={ activeBids } user={ user._id} type='active'/>}
+          { profileView === views[1] && <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>}
+          { profileView === views[2] && <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions' type='closed'/>}
+          { profileView === views[3] && <OwnedBids bids={ endedBids } user={ user._id} type='ended' />}
         </div>
       </div>
     </>

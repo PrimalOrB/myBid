@@ -87,6 +87,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
   padding: 1rem;
 }
 
@@ -302,8 +303,9 @@ input[type="checkbox"]:checked {
 .profile-header {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .change-pw,
@@ -313,4 +315,14 @@ input[type="checkbox"]:checked {
   padding: 0.25rem 0.75rem;
   border-radius: 0.75rem;
   margin: 0 0.5rem;
+  transition: 0.25s ease all;
+}
+
+.change-pw:hover,
+.profile-header span:hover {
+  background-color: rgba(135, 206, 250, 0.5);
+}
+
+.active-menu {
+  background-color: rgba(135, 206, 250, 0.5) !important;
 }
