@@ -14,7 +14,7 @@ const Home = () => {
           </>
         ) : 
           <>
-            Logged Out Home Component
+            Logged Out
           </>
         }
     </>

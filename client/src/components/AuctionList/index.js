@@ -37,7 +37,7 @@ const AuctionList = () => {
     <>
     { 
       <>
-        <h1>Current Auctions</h1>
+        <h1>Live Items</h1>
         <ul className='auction-list'>
         { sortedList.length > 0 ? ( sortedList.map( ( auction ) => {
             return <AuctionItem key={ auction._id } auction={ auction } addBid={ true }/>

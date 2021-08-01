@@ -10,7 +10,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
+  background-color: #b7ad9950;
 }
 
 a {
@@ -23,15 +23,19 @@ header {
   justify-content: space-between;
   align-items: center;
   height:100px;
-  background-color: lightskyblue;
+  background-color: #00d9c0;
+  border-radius: 5px;
 }
 
 /*company name*/
 a {
   text-decoration: none;
-  color:#301934;
+  color:black;
   font-size: 1.5rem;
   padding: 0.75rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+ 
 }
 
 /*company name position*/
@@ -48,7 +52,7 @@ svg{
 
 /*hiding the nav bar*/
 nav{
-  background-color: lightskyblue;
+  background-color: #00d9c0;
   box-shadow: none;
   display: flex;
   justify-content: flex-end;
@@ -126,7 +130,7 @@ form {
 
 /*btn color*/
 .btn{
-  background-color: #301934;
+  background-color: #FF4365;
   border-radius: 25px
 }
 
@@ -134,10 +138,11 @@ form {
 footer {
   text-align: center;
   justify-content: flex-start;
-  background-color: lightskyblue;
+  background-color: #00d9c0;
   height: 65px;
   display: flex;
   align-content: center;
+  border-radius: 5px;
   align-items: center;
 }
 
