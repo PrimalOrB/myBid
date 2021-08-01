@@ -15,10 +15,10 @@ import { useLazyQuery } from '@apollo/client';
 //importing to get unique session ID for specific product for stripe transaction 
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-// import CartItem from '../CartItem';
+import CartItem from '../../components/CartItem'
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
+import { ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
 
 //3 phases for stripe, another key for a phase, 
@@ -52,9 +52,9 @@ const Checkout = () => {
     }
   }, [state.checkout.length, dispatch]);
 
-  function toggleCheckout() {
-    dispatch({ type: TOGGLE_CHECKOUT });
-  }
+ // function toggleCheckout() {
+   // dispatch({ type: TOGGLE_CHECKOUT });
+ // }
 
   function calculateTotal() {
     let sum = 0;
@@ -80,7 +80,7 @@ const Checkout = () => {
 
   if (!state.checkoutOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCheckout}>
+      <div className="cart-closed">
         <span role="img" aria-label="trash">
           🛒
         </span>
@@ -90,14 +90,13 @@ const Checkout = () => {
 
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCheckout}>
-        [close]
+      <div className="close">
       </div>
       <h2>Shopping Cart</h2>
       {state.checkout.length ? (
         <div>
-          {state.chekout.map((item) => (
-            <CheckoutItem key={item._id} item={item} />
+          {state.checkout.map((item) => (
+            <CartItem key={item._id} item={item} />
           ))}
 
           <div className="flex-row space-between">
