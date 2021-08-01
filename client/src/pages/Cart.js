@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStoreContext } from '../utils/GlobalState'
 import auth from "../utils/auth";
 import Checkout from '../components/Checkout';
