@@ -30,11 +30,11 @@ const StoreProvider = ({ value = [], ...props }) => {
 */
 const Cart = () => {
 
-  useEffect(() => {
-    return () => {
-      console.log("proceed to checkout");
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("proceed to checkout");
+  //   };
+  // }, []);
 
   return (
     <>

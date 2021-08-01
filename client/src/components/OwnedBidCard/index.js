@@ -12,6 +12,12 @@ const OwnedBidsCard = ( { bid, auction, user, type }) => {
         return () => clearTimeout(timer);
     });
 
+    function handleAddCart( auction ) {
+      // this is the auction info that will go to the cart. we will not need all of it, probably title, description, _id, and auctionInfo.currentBid (cost))
+      console.log( auction )
+      // after payment, we will need to create a dB route which updates the paid status of the auction
+    }
+
   return (
     <>
     { 
