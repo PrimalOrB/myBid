@@ -512,6 +512,27 @@ input[type="checkbox"]:active {
   box-shadow: none !important;
 }
 
+.pay-status {
+  border: 1px solid var(--primary-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: 0.25s ease all;
+  color: var(--white-full);
+}
+
+.paid {
+  background-color: rgb(85, 129, 87);
+}
+
+.not-paid {
+  background-color: rgb(202, 100, 100);
+  transition: 0.25s ease all;
+}
+
+.not-paid:hover {
+  background-color: var(--secondary-color);
+}
+
 @media screen and (min-width: 760px) {
   header {
     height: 6rem;
