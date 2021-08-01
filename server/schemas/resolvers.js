@@ -336,11 +336,19 @@ const resolvers = {
           // get data for current bid
         const currentAuction = await Auction.findOne( { _id } )
 
+          // check for expired auction
+        const checkIsExpired = new Date( Number( currentAuction.endDate ) ).getTime() < new Date().getTime()
+        
+          // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
+
           // get current user/owner to return if failed
         const currentUser  = await User.findOne({_id: currentAuction.ownerId })
 
-          // if context user matches the owner of the auction, allow delete
-        if( currentAuction.ownerId == context.user._id) {
+          // if context user matches the owner of the auction and is not expired, allow delete
+        if( currentAuction.ownerId == context.user._id && !checkIsExpired) {
             // get all bids and map through
           currentAuction.bids.map( async ( bid ) => {
               // find bid
