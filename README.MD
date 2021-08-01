@@ -40,6 +40,7 @@ MERN Full Stack SPA: An auction platform with social features allowing anyone to
   - In the users profile, they can monitor completed auctions they have been active in bidding
 
 ## Screenshot
+
 ![image](https://user-images.githubusercontent.com/69044956/127777775-cda42ade-9608-405d-9dfb-7d51b8fcb203.png)
 
 ## Deployment

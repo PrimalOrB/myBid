@@ -5,7 +5,6 @@ import { GiGavel } from 'react-icons/gi'
 import { CgProfile } from  'react-icons/cg'
 import { RiLogoutCircleRLine, RiAddCircleLine, RiLoginCircleLine, RiCreativeCommonsByLine } from 'react-icons/ri'
 import { FiShoppingCart } from 'react-icons/fi'
-import Checkout from "../Checkout";
 
 const Header = () => {
   const logout = (event) => {
@@ -27,10 +26,8 @@ const Header = () => {
           <>
             <Link to="/new"><RiAddCircleLine /><span className='menu-label'>New Auction</span></Link>
             <Link to="/profile"><CgProfile /><span className='menu-label'>Profile</span></Link>
-            {/* this Checkout was cart before */}
-            <Link to="/checkout"><FiShoppingCart /></Link>
+            <Link to="/cart"><FiShoppingCart /></Link>
             <Link to="/" onClick={logout}><RiLogoutCircleRLine /><span className='menu-label'>Logout</span></Link>
-
           </>
         ) : (
           <>

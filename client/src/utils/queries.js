@@ -38,6 +38,7 @@ export const QUERY_ME = gql`
         reserve
         createdAt
         endDate
+        paid
         activeStatus
         auctionInfoStore {
           bidCount
@@ -54,6 +55,7 @@ export const QUERY_ME = gql`
         reserve
         createdAt
         endDate
+        paid
         activeStatus
         auctionInfo {
           bidCount
@@ -85,6 +87,7 @@ export const QUERY_AUCTIONS = gql`
       createdAt
       endDate
       activeStatus
+      paid
       auctionInfo {
         bidCount
         reserveMet
@@ -113,6 +116,7 @@ export const QUERY_AUCTION = gql`
       reserve
       endDate
       activeStatus
+      paid
       auctionInfo {
         bidCount
         reserveMet
@@ -157,6 +161,8 @@ export const QUERY_AUCTIONS_BY_OWNER = gql`
         increment
         incrementing
       }
+      currentBid
     }
   }
 `;
+

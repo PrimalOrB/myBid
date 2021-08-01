@@ -51,6 +51,7 @@ type Auction {
     description: String!
     reserve: Int
     endDate: String!
+    paid: Boolean
     bids: [Bid]
     activeStatus: Boolean
     auctionInfo: Result
