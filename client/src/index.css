@@ -237,6 +237,16 @@ footer h2 {
   font-size: 0.7rem;
 }
 
+footer a {
+  font-size: 0.7rem;
+  padding: 0;
+  transition: 0.25s ease all;
+}
+
+footer a:hover {
+  color: var(--primary-color);
+}
+
 h2 {
   margin: 0;
   font-size: 1rem;
@@ -565,6 +575,11 @@ input[type="checkbox"]:active {
 
   footer h2 {
     font-size: 1rem;
+  }
+
+  footer a {
+    font-size: 1rem;
+    padding: 0;
   }
 }
 

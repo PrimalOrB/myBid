@@ -102,13 +102,13 @@ const AuctionForm = ( { mode, auction } ) => {
             reserve: auctionData.reserve, 
             endDate: auctionData.endDate
         } )
-    },[auctionData])
+    },[data?.auction])
 
     if (loading) {
         return <Loading/>;
     }
 
-    if( error ){
+    if( error || error2 ){
         return (
           <ErrorMessage />
         )
