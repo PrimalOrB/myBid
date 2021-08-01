@@ -56,6 +56,7 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/changepw" component={ChangePassword} />
             <Route exact path="/new" component={AddAuction} />
+            <Route exact path="/edit/:id" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
             <Route exact path="/success" component={Success} />
             <Route exact path="/orderHistory" component={OrderHistory} />

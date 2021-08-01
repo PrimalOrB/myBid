@@ -121,8 +121,7 @@ const resolvers = {
     auction: async (parent, { id }, context) => {
       if (context.user) {
         const matchAuction = await Auction.findOne({ _id: id })
-          .populate('bids');
-
+        .populate('bids');
         return matchAuction
       }
       throw new AuthenticationError('Not logged in');

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { paddedNumber, calculateTimeLeft } from '../../utils/helpers';
 import Auth from '../../utils/auth';
 import Loading from '../Loading';
+import { FaEdit } from 'react-icons/fa'
+
 
 
 const OwnedItem = ( { auction, type } ) => {
@@ -21,7 +23,7 @@ const OwnedItem = ( { auction, type } ) => {
         <>
         { loggedIn ? (
             <article className='card'>
-                <span className='card-title'>{ auction.title }</span>
+                <span className='card-title'>{ timeLeft.seconds && <a href={ `/edit/${ auction._id }`}><FaEdit /></a> } { auction.title } </span>
                 <span className='card-desc'>{ auction.description }</span>
                 <div className='card-current'>
                     <div>

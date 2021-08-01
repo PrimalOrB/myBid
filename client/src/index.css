@@ -297,6 +297,7 @@ h2 {
 .bid-form div,
 .login-form div,
 .signup-form div,
+.auction-form div,
 .place-bid-container .error {
   color: red;
   font-style: italic;
@@ -311,6 +312,21 @@ h2 {
 .card-title {
   font-size: large;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.card-title svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--primary-color);
+}
+
+.card-title a {
+  margin-right: 0.5rem;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
 }
 
 .card-desc {
