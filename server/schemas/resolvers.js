@@ -114,7 +114,7 @@ const resolvers = {
         }
         throw new AuthenticationError('Not logged in');
     },
-    auctions: async (parent, args, context) => {
+    auctions: async (parent, args, context) => { //available when not logged in
         return Auction.find()
         .populate('bids');
     },
@@ -194,7 +194,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Incorrect credentials');
     },
-    addBid: async (parent, { input }, context) => {
+    addBid: async (parent, { input }, context) => { //protect against bidding on your own auction
       if( context.user ){
 
         const bidData = { ...input }

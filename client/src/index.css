@@ -296,7 +296,8 @@ h2 {
 .password-form div,
 .bid-form div,
 .login-form div,
-.signup-form div {
+.signup-form div,
+.place-bid-container .error {
   color: red;
   font-style: italic;
   width: 100%;
