@@ -24,10 +24,10 @@ const Header = () => {
       <nav>
         {Auth.loggedIn() ? (
           <>
-            <Link to="/new"><RiAddCircleLine />New Auction</Link>
-            <Link to="/profile"><CgProfile />Profile</Link>
+            <Link to="/new"><RiAddCircleLine /><span className='menu-label'>New Auction</span></Link>
+            <Link to="/profile"><CgProfile /><span className='menu-label'>Profile</span></Link>
             <Link to="/cart"><FiShoppingCart /></Link>
-            <Link to="/" onClick={logout}><RiLogoutCircleRLine />Logout</Link>
+            <Link to="/" onClick={logout}><RiLogoutCircleRLine /><span className='menu-label'>Logout</span></Link>
           </>
         ) : (
           <>

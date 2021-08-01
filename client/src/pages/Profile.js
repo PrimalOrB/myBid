@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
-  const views = [ 'Active Bids', 'Your Active Auctions', 'Your Closed Auctions', 'Your Completed Bids']
+  const views = [ 'Active Bids', 'Active Auctions', 'Closed Auctions', 'Completed Bids']
 
   
   const [profileView, setProfileView] = useState( views[0] );
@@ -67,6 +67,7 @@ const Profile = () => {
         console.log( 'not updated' )
       }
     }
+    return currentBids
   })
 
   const activeBids = []
@@ -74,7 +75,7 @@ const Profile = () => {
       if( auction.auction.activeStatus === true ){
         return activeBids.push( auction )
       }
-      return
+      return null
   } )
 
   const endedBids = []
@@ -82,7 +83,7 @@ const Profile = () => {
       if( auction.auction.activeStatus === false ){
         return endedBids.push( auction )
       }
-      return
+      return null
   } )
 
   return (
@@ -91,7 +92,7 @@ const Profile = () => {
         <div className="profile-header">
           <div className="profile-menu">
           {views.map( ( menuItem, i ) => {
-              return <span key={ menuItem } className={ menuItem == profileView ? 'active-menu' : '' } onClick={ () => handleMenuClick( i ) }>
+              return <span key={ menuItem } className={ menuItem === profileView ? 'active-menu' : '' } onClick={ () => handleMenuClick( i ) }>
                 { `${ menuItem } 
                 ${  menuItem === views[0] ? `( ${activeBids.length} )` : ""} 
                 ${  menuItem === views[1] ? `( ${currentList.length} )` : ""} 
@@ -109,7 +110,7 @@ const Profile = () => {
         <div className="profile-items">
           { profileView === views[0] && <OwnedBids bids={ activeBids } user={ user._id} type='active'/>}
           { profileView === views[1] && <OwnedAuctions auctions={ currentList } title='Active Owned Auctions'/>}
-          { profileView === views[2] && <OwnedAuctions auctions={ closedList } title='Completed Owned Auctions' type='closed'/>}
+          { profileView === views[2] && <OwnedAuctions auctions={ closedList } title='Completed Auctions' type='closed'/>}
           { profileView === views[3] && <OwnedBids bids={ endedBids } user={ user._id} type='ended' />}
         </div>
       </div>

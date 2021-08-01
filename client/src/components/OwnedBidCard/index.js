@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'react-dom'   
+import React, { useEffect, useState } from 'react'; 
 import { paddedNumber, calculateTimeLeft } from '../../utils/helpers'; 
 
 const OwnedBidsCard = ( { bid, auction, user, type }) => {
@@ -45,7 +44,6 @@ const OwnedBidsCard = ( { bid, auction, user, type }) => {
                 <div className="add-bid">
                     <span><a href={ `/auction/${ auction._id }`} >Bid Again!</a></span>
                 </div>
-                {/* <Link to={ `/auction/${ auction._id }`} >Add Bid!</Link> */}
                 
           </div>
           </>
@@ -80,8 +78,5 @@ const OwnedBidsCard = ( { bid, auction, user, type }) => {
       }
     </>
   );
-
-
-
 };
 export default OwnedBidsCard;

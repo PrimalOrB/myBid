@@ -39,9 +39,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  height: 100px;
+  height: 4.5rem;
   background-color: var(--secondary-color);
-  transform: translateY(-1.8rem);
+  transform: translateY(-1.5rem);
   border-bottom: 0.5rem solid var(--primary-color);
 }
 
@@ -49,7 +49,7 @@ header {
 a {
   text-decoration: none;
   color: var(--white-full);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   padding: 0.75rem;
 }
 
@@ -58,10 +58,10 @@ a:visited {
 }
 
 .logo-link {
-  padding: 0.25rem 5rem 0.75rem 0.75rem;
+  padding: 0.25rem 3rem 0.75rem 0.75rem;
   clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
   background-color: var(--primary-color);
-  transform: translateY(1.5rem);
+  transform: translateY(1.25rem);
   box-shadow: 5px 10px;
   transition: 0.25s ease all;
 }
@@ -80,12 +80,11 @@ header h1 {
   align-items: center;
   margin: 0;
   padding: 0;
+  font-size: 2.5rem;
 }
 
-/*gavel*/
-svg {
-  color: #301934;
-  margin-right: 0.5rem;
+.menu-label {
+  display: none;
 }
 
 /*hiding the nav bar*/
@@ -93,7 +92,11 @@ nav {
   background-color: var(--secondary-color);
   box-shadow: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
+  align-items: center;
+  height: 2.5rem;
+  line-height: 2rem;
 }
 
 nav svg {
@@ -108,7 +111,8 @@ nav div,
 nav a {
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
+  height: 100%;
+  padding: 0 0.75rem;
 }
 
 nav li,
@@ -135,7 +139,7 @@ nav a:hover svg {
   fill: var(--primary-color);
 }
 
-nav ul a nav svg {
+nav svg {
   width: 2rem;
   height: 2rem;
 }
@@ -162,7 +166,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: top;
-  padding: 1rem;
+  padding: 1rem 0;
   margin-top: -1.8rem;
 }
 
@@ -171,7 +175,7 @@ main h1 {
   font-size: 3rem;
   color: var(--primary-color);
   text-align: center;
-  padding: 0 0 1rem;
+  padding: 0;
   margin: 0;
   border-bottom: 0.5rem solid var(--primary-color);
 }
@@ -230,6 +234,7 @@ footer {
 footer h2 {
   width: 100%;
   text-align: center;
+  font-size: 0.7rem;
 }
 
 h2 {
@@ -239,7 +244,7 @@ h2 {
 
 /* added */
 .auction-list {
-  width: 90%;
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: space-around;
@@ -248,7 +253,7 @@ h2 {
 }
 
 .owned-list {
-  width: 45%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -277,7 +282,7 @@ h2 {
 .password-form,
 .auction-form {
   margin: 0.5rem;
-  width: 45%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -420,13 +425,24 @@ input[type="checkbox"]:checked {
 }
 
 .change-pw,
-.profile-header span {
+.profile-menu span {
   background-color: var(--primary-color);
   color: var(--white-full);
   font-size: 1rem;
   padding: 0.25rem 0.75rem;
   transition: 0.25s ease all;
-  border-right: 2px solid var(--white-full);
+  border: 2px solid var(--white-full);
+}
+
+.profile-menu span {
+  width: 50%;
+  text-align: center;
+}
+
+.profile-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .profile-menu:last-child {
@@ -434,6 +450,8 @@ input[type="checkbox"]:checked {
 }
 
 .change-pw {
+  text-align: center;
+  display: flex;
   border: none;
 }
 
@@ -464,4 +482,107 @@ input[type="checkbox"]:focus,
 input[type="checkbox"]:active {
   border-bottom: none !important;
   box-shadow: none !important;
+}
+
+@media screen and (min-width: 760px) {
+  header {
+    height: 6rem;
+  }
+
+  header h1 {
+    font-size: 4rem;
+  }
+
+  nav {
+    height: 4rem;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+
+  .menu-label {
+    display: block;
+  }
+
+  .logo-link {
+    padding: 0.25rem 5rem 0.75rem 0.75rem;
+  }
+
+  nav svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  nav ul a,
+  nav div,
+  nav a {
+    padding: 0 0.75rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  main h1 {
+    padding: 0 0 1rem;
+  }
+
+  .auction-list {
+    width: 90%;
+  }
+
+  .profile-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  footer h2 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  a {
+    font-size: 1.4rem;
+  }
+
+  nav ul a,
+  nav div,
+  nav a {
+    padding: 0 1.4rem;
+  }
+
+  nav svg {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .change-pw,
+  .profile-menu span {
+    background-color: var(--primary-color);
+    color: var(--white-full);
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
+    transition: 0.25s ease all;
+    border: none;
+    border-right: 2px solid var(--white-full);
+  }
+
+  .profile-menu span {
+    width: auto;
+  }
+
+  .profile-menu:last-child {
+    border-right: none;
+  }
+
+  .change-pw {
+    border: none;
+  }
+
+  .owned-list {
+    width: 45%;
+  }
 }
