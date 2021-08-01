@@ -74,5 +74,5 @@ Built by:
 - [Andrew Ogilvie](https://github.com/PrimalOrB)
 - [Jon Waaler](https://github.com/JonWaaler)
 - [Jessica Jeyanthiran](https://github.com/JessicaJeyanthiran)
-- [Johny Matharu]("https://github.com/JohnnyMatharu)
+- [Johny Matharu](https://github.com/JohnnyMatharu)
 - [Jeff Grant](https://github.com/JeffGrant274)
