@@ -1,6 +1,7 @@
 import React from 'react';
-import { useStoreContext } from '../../utils/GlobalState';
+import { useStoreContext } from '../utils/GlobalState'
 import auth from "../utils/auth";
+import Checkout from '../components/Checkout';
 
 
 //list of items -state.cart and map objects, auctionList
@@ -16,13 +17,33 @@ const StoreProvider = ({ value = [], ...props }) => {
     cart: [{title: "dummy1", price: 123.00 }, {title: "dummy2", price: 167.00}, {title: "dummy3", price: 450.00}]
   });
 */
+
+/*
 <ul className='auction-list'>
         { sortedList.length > 0 ? ( sortedList.map( ( auction ) => {
-            return <AuctionItem key={ auction._id } auction={ auction } addBid={ true }/>
+            return <AuctionItem key={ auction._id } auction={ auction.title, auction.price,  } addBid={ true }/>
           } 
         ) ) : (
           <Loading />
         ) }
         </ul>
+*/
+const Cart = () => {
+
+  useEffect(() => {
+    return () => {
+      console.log("proceed to checkout");
+    };
+  }, []);
+
+  return (
+    <>
+    <h1>Checkout</h1>
+    <Checkout />
+    </>
+  );
+};
+
+
 
 export default Cart;

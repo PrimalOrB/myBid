@@ -19,42 +19,38 @@ const AuctionItem = ( { auction, addBid } ) => {
 
   return (
     <>
-        { timeLeft.seconds > 0 && 
         <article className='card'>
             <span className='card-title'>{ auction.title }</span>
             <span className='card-desc'>{ auction.description }</span>
             <div className='card-current'>
                 <div>
                     <span>Current Bid:</span>
-                    <span>${ auction.auctionInfo.currentBid.toFixed(2) }</span>
+                    <span key={ auction.auctionInfo.currentBid.toFixed(2) } className='bid-value'>${ auction.auctionInfo.currentBid.toFixed(2) }</span>
                 </div>
                 <div>
                     <span>Number Of Bids:</span>
-                    <span>{ auction.auctionInfo.bidCount }</span>
+                    <span key={ auction.auctionInfo.bidCount } className='bid-count'>{ auction.auctionInfo.bidCount }</span>
                 </div>
             </div>
             <div className="card-status">
-            { !timeLeft.seconds ? <div className="closed-bid"><span>Auction Ended</span></div> : 
                 <span>Time Remaining:
                     <span className='remaining'> { ( timeLeft.days && `${timeLeft.days} days, ` ) }
                     { `${ paddedNumber( timeLeft.hours ) }:${ paddedNumber( timeLeft.minutes ) }:${ paddedNumber( timeLeft.seconds ) }` }
                     </span>        
                 </span>
-            }
-            { auction.auctionInfo.reserveMet ? ( 
-                <span className='reserve-met'>Reserve Met</span> 
-                ) : ( 
-                <span className='reserve-not'>Reserve Not Met</span>
-                ) 
-            }
+                { auction.auctionInfo.reserveMet ? ( 
+                    <span className='reserve-met'>Reserve Met</span> 
+                    ) : ( 
+                    <span className='reserve-not'>Reserve Not Met</span>
+                    ) 
+                }
             </div>
-            { ( loggedIn && addBid) && (
+            { ( loggedIn && addBid ) && (
             <div className="add-bid">
                 <span><Link to={ `/auction/${ auction._id }`} >Add Bid!</Link></span>
             </div>
-            )}
+            ) }
         </article>
-        }
     </>
   );
 };

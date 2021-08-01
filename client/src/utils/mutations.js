@@ -63,3 +63,38 @@ export const ADD_AUCTION = gql`
     }
   }
 `;
+
+export const CHANGE_PASSWORD = gql`
+  mutation updatePassword($currentPassword: String!, $newPassword: String!){
+    updatePassword(currentPassword: $currentPassword, newPassword: $newPassword){
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
+export const UPDATE_AUCTION = gql`
+  mutation updateAuction($_id: ID!, $input: AuctionInput!) {
+    updateAuction(_id: $_id, input: $input) {
+      _id
+      ownerId
+      title
+      description
+      reserve
+      endDate
+      activeStatus
+      bids{
+        _id
+      }
+      auctionInfo{
+        bidCount
+        reserveMet
+        reserve
+        currentBid
+        currentLeader
+      }
+    }
+  }
+`;

@@ -72,7 +72,26 @@ const resolvers = {
           const userData = await User.findOne({ _id: context.user._id })
             .select('-__v -password')  
             .populate('auctions') 
-            .populate('bids');      
+            .populate('bids');   
+            
+          if( userData.auctions.length > 0 ){
+            for( let i = 0; i < userData.auctions.length; i++){
+              // populate and store the virtual props of auction as it was not reachable within the me query on the front end
+              const auctionData = await Auction.findOne({ _id: userData.auctions[i]._id })
+                .populate('bids'); 
+                userData.auctions[i].auctionInfoStore = auctionData.auctionInfo
+            }
+          }
+          if( userData.bids.length > 0 ){
+            //create empty store prop
+            userData.bidsStore = []
+            for( let i = 0; i < userData.bids.length; i++){
+              // populate and store the virtual props of auction as it was not reachable within the me query on the front end
+              const auctionData = await Auction.findOne({ _id: userData.bids[i].auctionId })
+                .populate('bids'); 
+              userData.bidsStore.push( auctionData )
+            }
+          }  
           return userData;
         }
         throw new AuthenticationError('Not logged in');
@@ -95,16 +114,21 @@ const resolvers = {
         }
         throw new AuthenticationError('Not logged in');
     },
-    auctions: async (parent, args, context) => {
-      if (context.user) {
+    auctions: async (parent, args, context) => { //available when not logged in
         return Auction.find()
         .populate('bids');
-      }
-    throw new AuthenticationError('Not logged in');
     },
     auction: async (parent, { id }, context) => {
       if (context.user) {
-        return Auction.findOne({ _id: id })
+        const matchAuction = await Auction.findOne({ _id: id })
+        .populate('bids');
+        return matchAuction
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    auctionsByOwner: async (parent, args, context) => {
+      if (context.user) {
+        return Auction.find({ ownerId: context.user._id })
         .populate('bids');
       }
       throw new AuthenticationError('Not logged in');
@@ -113,7 +137,6 @@ const resolvers = {
 
   Mutation: {
     addOrder: async (parent, { auctions }, context) => {
-      console.log(context);
       if (context.user) {
         const order = new Order({ auctions });
 
@@ -166,35 +189,59 @@ const resolvers = {
           { $push: { auctions: auction._id } },
           { new: true, runValidators: true }
           ).populate('auctions');
+
+        const emailData = { username: context.user.username, email: context.user.email, id: auction._id, title: auction.title }
+        sendEmail( emailData, 'new-auction' )
+
         return updatedUser ;
       }
       throw new AuthenticationError('Incorrect credentials');
     },
-    addBid: async (parent, { input }, context) => {
+    addBid: async (parent, { input }, context) => { //protect against bidding on your own auction
       if( context.user ){
 
         const bidData = { ...input }
-          // set userId based on context
-        bidData.userId = context.user._id
-          // create bid
-        const bid = await Bid.create( bidData );  
 
+          // find auction being bid on
+        const findAuction = await Auction.find({_id:bidData.auctionId})
 
-          // add bid reference to user
-        const updatedUser  = await User.findOneAndUpdate(
-          {_id: bidData.userId},
-          { $push: { bids: bid._id } },
-          { new: true, runValidators: true }
-          ).populate('bids');
+          // check for expired auction
+        const checkIsExpired = new Date( Number( findAuction[0].endDate ) ).getTime() < new Date().getTime()
 
-            // add bid reference to auction
-        const updatedAuction  = await Auction.findOneAndUpdate(
-          {_id: bidData.auctionId},
-          { $push: { bids: bid._id } },
-          { new: true, runValidators: true }
-          ).populate('bids');
+           // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
 
-        return updatedAuction
+          // check if auction owned by context user, and is not expired
+        if( !(context.user._id == findAuction[0].ownerId) && !checkIsExpired ) {
+            // set userId based on context
+          bidData.userId = context.user._id
+            // create bid
+          const bid = await Bid.create( bidData );  
+    
+    
+            // add bid reference to user
+          const updatedUser  = await User.findOneAndUpdate(
+            {_id: bidData.userId},
+            { $push: { bids: bid._id } },
+            { new: true, runValidators: true }
+            ).populate('bids');
+    
+              // add bid reference to auction
+          const updatedAuction  = await Auction.findOneAndUpdate(
+            {_id: bidData.auctionId},
+            { $push: { bids: bid._id } },
+            { new: true, runValidators: true }
+            ).populate('bids');
+
+          const emailData = { username: context.user.username, email: context.user.email, id: updatedAuction.auctionId, title: updatedAuction.title }
+          sendEmail( emailData, 'new-bid' )
+    
+          return updatedAuction
+        }
+       
+        throw new AuthenticationError('You cannot bid on your own Auction!');
       }
       throw new AuthenticationError('Incorrect credentials');
     },
@@ -261,8 +308,16 @@ const resolvers = {
         let { title, description, reserve, endDate } = input
         const currentAuction = await Auction.findOne( { _id } )
 
-          // if context user matches the owner of the bid, allow update
-        if( currentAuction.ownerId == context.user._id) {
+          // check for expired auction
+        const checkIsExpired = new Date( Number( currentAuction.endDate ) ).getTime() < new Date().getTime()
+        
+          // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
+
+          // if context user matches the owner of the bid and is not expired, allow update
+        if( currentAuction.ownerId == context.user._id && !checkIsExpired) {
             // verify that maxBid and increment are not being reduced from current settings, otherwise continue with current
             reserve = reserve >= currentAuction.reserve ? currentAuction.reserve : reserve
             endDate = endDate <= currentAuction.endDate ? currentAuction.endDate : endDate
@@ -287,11 +342,19 @@ const resolvers = {
           // get data for current bid
         const currentAuction = await Auction.findOne( { _id } )
 
+          // check for expired auction
+        const checkIsExpired = new Date( Number( currentAuction.endDate ) ).getTime() < new Date().getTime()
+        
+          // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
+
           // get current user/owner to return if failed
         const currentUser  = await User.findOne({_id: currentAuction.ownerId })
 
-          // if context user matches the owner of the auction, allow delete
-        if( currentAuction.ownerId == context.user._id) {
+          // if context user matches the owner of the auction and is not expired, allow delete
+        if( currentAuction.ownerId == context.user._id && !checkIsExpired) {
             // get all bids and map through
           currentAuction.bids.map( async ( bid ) => {
               // find bid

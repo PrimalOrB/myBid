@@ -31,6 +31,7 @@ type User {
     email: String
     auctions: [Auction]
     bids: [Bid]
+    bidsStore: [Auction]
 }
 
 type Checkout {
@@ -53,6 +54,8 @@ type Auction {
     bids: [Bid]
     activeStatus: Boolean
     auctionInfo: Result
+    auctionInfoStore: Result
+    currentBid: Int
 }
 
 type Result {
@@ -79,6 +82,7 @@ type Query {
     user(username: String!): User
     auctions: [Auction]
     auction(id: ID!): Auction
+    auctionsByOwner: [Auction]
     order(_id: ID!): Order
     checkout(auctions: [ID]!): Checkout
 }

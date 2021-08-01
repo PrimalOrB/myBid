@@ -1,25 +1,19 @@
-import React from 'react';
-import Auth from '../utils/auth';
+import React, {useEffect} from 'react';
 import AuctionList from "../components/AuctionList";
 
 const Home = () => {
 
-  const loggedIn = Auth.loggedIn();
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up Home");
+    };
+  }, []);
 
   return (
     <>
-        {loggedIn ? (
-          <>
-            <AuctionList />
-          </>
-        ) : 
-          <>
-            Logged Out Home Component
-          </>
-        }
+    <h1>Current Auctions</h1>
+    <AuctionList />
     </>
-  
-
   );
 };
 

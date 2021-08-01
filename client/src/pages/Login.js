@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import M from 'materialize-css';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -34,10 +33,10 @@ const Login = (props) => {
   };
 
   return (
-    <div className="form-container">
-      <h4>Login</h4>
-        <form onSubmit={handleFormSubmit}>
-
+    <>
+    <h1>Login</h1>
+    <div className="form-container login-form">
+        <form onSubmit={handleFormSubmit}  autoComplete="off">
           <input
             placeholder='Your email'
             name='email'
@@ -55,12 +54,13 @@ const Login = (props) => {
             value={formState.password}
             onChange={handleChange}
           />
-          <button type='submit'className="btn waves-effect waves-light">
+          <button type='submit'className="btn">
             <i className ="material-icons center">Submit</i>
           </button>
-          {error && <div>Login failed</div>}
+          {error && <div>* Login failed</div>}
         </form>
       </div>
+      </>
   );
 };
 

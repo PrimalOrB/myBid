@@ -23,6 +23,7 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 import Cart from './pages/Cart';        
+import ChangePassword from './pages/ChangePassword';
 
 
 const httpLink = createHttpLink({
@@ -57,7 +58,9 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/changepw" component={ChangePassword} />
             <Route exact path="/new" component={AddAuction} />
+            <Route exact path="/edit/:id" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/success" component={Success} />

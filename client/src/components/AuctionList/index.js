@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_AUCTIONS } from '../../utils/queries'
 import Loading from '../Loading'
 import AuctionItem from '../AuctionItem'
+import ErrorMessage from '../ErrorMessage'
 
 const AuctionList = () => {
+
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up AuctionList");
+    };
+  }, []);
 
   let { data, loading, error } = useQuery( QUERY_AUCTIONS, { pollInterval: 30000 } ); // query every 30 seconds
 
@@ -16,7 +23,7 @@ const AuctionList = () => {
 
   if( error ){
     return (
-      <h1>Error</h1>
+      <ErrorMessage />
     )
   }
 
@@ -37,7 +44,6 @@ const AuctionList = () => {
     <>
     { 
       <>
-        <h1>Current Auctions</h1>
         <ul className='auction-list'>
         { sortedList.length > 0 ? ( sortedList.map( ( auction ) => {
             return <AuctionItem key={ auction._id } auction={ auction } addBid={ true }/>
