@@ -50,8 +50,42 @@ module.exports = {
             subject: `myBid Password change`,
             generateTextFromHTML: true,
             html: `
-            <a href="https://mybid-live.herokuapp.com/"><b>myBid Password Change Notification</b></a><br/>
+            <a href="https://mybid-live.herokuapp.com/"><b>myBid</b></a> Password Change Notification<br/>
             Hello ${ data.username }, this email is to verify that your <b>myBid</b> account password has been updated! <br/>
+            `
+          };
+        break
+      case 'new-auction':
+        // emailRecipient = 'mybid.platform@gmail.com'
+            // would be uncommented for use so it can send to the signed up user
+        emailRecipient = data.email
+            // mail template
+        mailOptions = {
+            from: process.env.EMAIL_ACCOUNT,
+            to: emailRecipient,
+            subject: `myBid New Auction Notification`,
+            generateTextFromHTML: true,
+            html: `
+            <a href="https://mybid-live.herokuapp.com/"><b>myBid</b></a> New Auction Notification<br/>
+            Hello ${ data.username }, this email is to confirm that you have created a new auction for "${data.title}" on <b>myBid</b>! <br/>
+            <a href="https://mybid-live.herokuapp.com/auction/${data.id}">See it here!</a>
+            `
+          };
+        break
+      case 'new-bid':
+        // emailRecipient = 'mybid.platform@gmail.com'
+            // would be uncommented for use so it can send to the signed up user
+        emailRecipient = data.email
+            // mail template
+        mailOptions = {
+            from: process.env.EMAIL_ACCOUNT,
+            to: emailRecipient,
+            subject: `myBid New Bid Notification`,
+            generateTextFromHTML: true,
+            html: `
+            <a href="https://mybid-live.herokuapp.com/"><b>myBid</b></a> New Bid Notification<br/>
+            Hello ${ data.username }, this email is to confirm that you have adde a new bid for auction "${data.title}" on <b>myBid</b>! <br/>
+            <a href="https://mybid-live.herokuapp.com/auction/${data.id}">See it here!</a>
             `
           };
         break

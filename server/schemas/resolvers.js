@@ -189,6 +189,10 @@ const resolvers = {
           { $push: { auctions: auction._id } },
           { new: true, runValidators: true }
           ).populate('auctions');
+
+        const emailData = { username: context.user.username, email: context.user.email, id: auction._id, title: auction.title }
+        sendEmail( emailData, 'new-auction' )
+
         return updatedUser ;
       }
       throw new AuthenticationError('Incorrect credentials');
@@ -230,6 +234,9 @@ const resolvers = {
             { $push: { bids: bid._id } },
             { new: true, runValidators: true }
             ).populate('bids');
+
+          const emailData = { username: context.user.username, email: context.user.email, id: updatedAuction.auctionId, title: updatedAuction.title }
+          sendEmail( emailData, 'new-bid' )
     
           return updatedAuction
         }
