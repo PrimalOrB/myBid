@@ -202,8 +202,16 @@ const resolvers = {
           // find auction being bid on
         const findAuction = await Auction.find({_id:bidData.auctionId})
 
-          // check if auction owned by context user
-        if( !(context.user._id == findAuction[0].ownerId) ) {
+          // check for expired auction
+        const checkIsExpired = new Date( Number( findAuction[0].endDate ) ).getTime() < new Date().getTime()
+
+           // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
+
+          // check if auction owned by context user, and is not expired
+        if( !(context.user._id == findAuction[0].ownerId) && !checkIsExpired ) {
             // set userId based on context
           bidData.userId = context.user._id
             // create bid
@@ -226,6 +234,7 @@ const resolvers = {
     
           return updatedAuction
         }
+       
         throw new AuthenticationError('You cannot bid on your own Auction!');
       }
       throw new AuthenticationError('Incorrect credentials');

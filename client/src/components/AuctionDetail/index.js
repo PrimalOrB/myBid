@@ -42,6 +42,7 @@ const { loading, data, error  } = useQuery(QUERY_AUCTION,{
           { checkUserIsOwner && <div className='error'>You cannot bid on your own Auction!</div> }
           { checkExpired && <div className='error'>You cannot bid on a closed Auction!</div> }
           { ( !checkUserIsOwner && !checkExpired ) && <BidForm auctionId={ _id } currentBid={ data.auction.auctionInfo.currentBid } /> }
+          <BidForm auctionId={ _id } currentBid={ data.auction.auctionInfo.currentBid } />
         </div>
     </>
   );
