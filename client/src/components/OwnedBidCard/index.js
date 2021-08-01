@@ -58,12 +58,6 @@ const OwnedBidsCard = ( { bid, auction, user, type }) => {
           <div className='card'>
               { user === auction.auctionInfo.currentLeader ? <span className='winning'>Auction Won { !auction.paid ? <span className='pay-status not-paid' onClick={ () => handleAddCart( auction ) }>Pay Now</span> : <span className='pay-status paid'>Paid</span>}</span> : <span className='losing'>Auction Lost</span>}
               <span className='card-title'>{auction.title} @ <span key={ auction.auctionInfo.currentBid.toFixed(2) } className='bid-value'>${ auction.auctionInfo.currentBid.toFixed(2) }</span></span>
-              <div className='card-current'>
-              <span>Your Max Bid: <span key={ bid.maxBid.toFixed(2) } className='bid-value'>${ bid.maxBid.toFixed(2) }</span></span>
-              { bid.incrementing && 
-                  <span>Increment By: <span key={ bid.increment.toFixed(2) } className='bid-value'>${ bid.increment.toFixed(2) }</span></span>
-              }
-              </div>
               
                 <div className="card-status">
                     <span>Auction Ended:

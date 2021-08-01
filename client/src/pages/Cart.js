@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useStoreContext } from '../utils/GlobalState'
-import auth from "../utils/auth";
-import Checkout from '../components/Checkout';
+// import { useStoreContext } from '../utils/GlobalState'
+// import auth from "../utils/auth";
+// import Checkout from '../components/Checkout';
 
 
 //list of items -state.cart and map objects, auctionList
@@ -39,7 +39,7 @@ const Cart = () => {
   return (
     <>
     <h1>Checkout</h1>
-    <Checkout />
+    {/* <Checkout /> */}
     </>
   );
 };
