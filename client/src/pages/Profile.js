@@ -61,11 +61,8 @@ const Profile = () => {
       currentBids[bid.auctionId].auction = user.bidsStore[i]
     } else {
       if( bid.createdAt > currentBids[bid.auctionId].bid.createdAt ){
-        console.log( 'updated' )
         currentBids[bid.auctionId].bid = bid
-      } else {
-        console.log( 'not updated' )
-      }
+      } 
     }
     return currentBids
   })

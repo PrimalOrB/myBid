@@ -302,8 +302,16 @@ const resolvers = {
         let { title, description, reserve, endDate } = input
         const currentAuction = await Auction.findOne( { _id } )
 
-          // if context user matches the owner of the bid, allow update
-        if( currentAuction.ownerId == context.user._id) {
+          // check for expired auction
+        const checkIsExpired = new Date( Number( currentAuction.endDate ) ).getTime() < new Date().getTime()
+        
+          // error if expired
+        if( checkIsExpired ){
+          throw new AuthenticationError('You cannot bid on a closed Auction!');
+        }
+
+          // if context user matches the owner of the bid and is not expired, allow update
+        if( currentAuction.ownerId == context.user._id && !checkIsExpired) {
             // verify that maxBid and increment are not being reduced from current settings, otherwise continue with current
             reserve = reserve >= currentAuction.reserve ? currentAuction.reserve : reserve
             endDate = endDate <= currentAuction.endDate ? currentAuction.endDate : endDate
