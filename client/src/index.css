@@ -587,7 +587,10 @@ input[type="checkbox"]:active {
     border: none;
   }
 
-  .owned-list {
+  .card,
+  .bid-form,
+  .password-form,
+  .auction-form {
     width: 45%;
   }
 }
