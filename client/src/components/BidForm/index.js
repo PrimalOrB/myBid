@@ -34,7 +34,7 @@ const BidForm = ( _id ) => {
 
     if( error ){
         return (
-          <ErrorMessage />
+          <ErrorMessage message={ error.message }/>
         )
     }
 

@@ -198,27 +198,35 @@ const resolvers = {
       if( context.user ){
 
         const bidData = { ...input }
-          // set userId based on context
-        bidData.userId = context.user._id
-          // create bid
-        const bid = await Bid.create( bidData );  
 
+          // find auction being bid on
+        const findAuction = await Auction.find({_id:bidData.auctionId})
 
-          // add bid reference to user
-        const updatedUser  = await User.findOneAndUpdate(
-          {_id: bidData.userId},
-          { $push: { bids: bid._id } },
-          { new: true, runValidators: true }
-          ).populate('bids');
-
-            // add bid reference to auction
-        const updatedAuction  = await Auction.findOneAndUpdate(
-          {_id: bidData.auctionId},
-          { $push: { bids: bid._id } },
-          { new: true, runValidators: true }
-          ).populate('bids');
-
-        return updatedAuction
+          // check if auction owned by context user
+        if( !(context.user._id == findAuction[0].ownerId) ) {
+            // set userId based on context
+          bidData.userId = context.user._id
+            // create bid
+          const bid = await Bid.create( bidData );  
+    
+    
+            // add bid reference to user
+          const updatedUser  = await User.findOneAndUpdate(
+            {_id: bidData.userId},
+            { $push: { bids: bid._id } },
+            { new: true, runValidators: true }
+            ).populate('bids');
+    
+              // add bid reference to auction
+          const updatedAuction  = await Auction.findOneAndUpdate(
+            {_id: bidData.auctionId},
+            { $push: { bids: bid._id } },
+            { new: true, runValidators: true }
+            ).populate('bids');
+    
+          return updatedAuction
+        }
+        throw new AuthenticationError('You cannot bid on your own Auction!');
       }
       throw new AuthenticationError('Incorrect credentials');
     },

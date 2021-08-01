@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ErrorMessage = () => {
+const ErrorMessage = ( { message } ) => {
   return (
-    <h1>Error</h1>
+    <h1>Error{ message && `: ${ message }` }</h1>
   )
 };
 
