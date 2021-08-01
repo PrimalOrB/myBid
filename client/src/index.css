@@ -112,7 +112,7 @@ nav a {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 0.75rem;
+  padding: 0 0.4rem;
 }
 
 nav li,
@@ -140,8 +140,8 @@ nav a:hover svg {
 }
 
 nav svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 /*font for the nav*/
@@ -290,6 +290,7 @@ h2 {
   border-radius: 0.5rem;
   border: 1px solid var(--primary-color);
   background-color: var(--white-fade-hard);
+  font-size: 0.8rem;
 }
 
 .password-form div,
@@ -428,8 +429,8 @@ input[type="checkbox"]:checked {
 .profile-menu span {
   background-color: var(--primary-color);
   color: var(--white-full);
-  font-size: 1rem;
-  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
   transition: 0.25s ease all;
   border: 2px solid var(--white-full);
 }
@@ -538,6 +539,13 @@ input[type="checkbox"]:active {
     justify-content: space-around;
   }
 
+  .card,
+  .bid-form,
+  .password-form,
+  .auction-form {
+    font-size: 1rem;
+  }
+
   footer h2 {
     font-size: 1rem;
   }
@@ -561,11 +569,8 @@ input[type="checkbox"]:active {
 
   .change-pw,
   .profile-menu span {
-    background-color: var(--primary-color);
-    color: var(--white-full);
     font-size: 1rem;
     padding: 0.25rem 0.75rem;
-    transition: 0.25s ease all;
     border: none;
     border-right: 2px solid var(--white-full);
   }
