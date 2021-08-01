@@ -17,7 +17,6 @@ const Signup = () => {
       [name]: value,
     })
 
-    console.log( name, value )
     checkPWLen( name, value )
   };
 

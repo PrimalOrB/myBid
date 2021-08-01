@@ -29,17 +29,19 @@ const { loading, data, error  } = useQuery(QUERY_AUCTION,{
     )
   }
 
+    // check to see if logged in user is the auction owner
+  const checkUserIsOwner = Auth.getProfile().data._id === data.auction.ownerId
+    // check to see if auction is expired
+  const checkExpired = new Date( Number( data.auction.endDate ) ).getTime() < new Date().getTime()
+
   return (
     <>
       <h1>Add Bid</h1>
         <div className="place-bid-container">
           <AuctionItem key={ data.auction._id } auction={ data.auction } addBid={ false }/>
-          { Auth.getProfile().data._id === data.auction.ownerId 
-          ? 
-            <div className='error'>You cannot bid on your own Auction!</div> 
-          : 
-            <BidForm auctionId={ _id } currentBid={ data.auction.auctionInfo.currentBid } />
-          }
+          { checkUserIsOwner && <div className='error'>You cannot bid on your own Auction!</div> }
+          { checkExpired && <div className='error'>You cannot bid on a closed Auction!</div> }
+          { ( !checkUserIsOwner && !checkExpired ) && <BidForm auctionId={ _id } currentBid={ data.auction.auctionInfo.currentBid } /> }
         </div>
     </>
   );
