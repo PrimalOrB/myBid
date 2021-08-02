@@ -31,14 +31,14 @@ export function idbPromise(storeName, method, object) {
     let db, tx, store;
     request.onupgradeneeded = function(e) {
       const db = request.result;
-      db.createObjectStore('auctions', { keyPath: '_id' });
       db.createObjectStore('cart', { keyPath: '_id' });
     };
 
+    
     request.onerror = function(e) {
       console.log('There was an error');
     };
-
+    
     request.onsuccess = function(e) {
       db = request.result;
       tx = db.transaction(storeName, 'readwrite');
@@ -60,7 +60,7 @@ export function idbPromise(storeName, method, object) {
           };
           break;
         case 'delete':
-          store.delete(object._id);
+          store.delete(object);
           break;
         default:
           console.log('No valid method');

@@ -1,8 +1,3 @@
-//success page is a part of this, transaction cyle through pages are as follows
-//In the browser, run through the checkout process. After the payment processes, you should be redirected 
-//to the Success page. Three seconds later, you should be redirected to the homepage. Click the Order 
-//History link in the header, and the order you just submitted will show up.
-
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -15,12 +10,13 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import AuctionDetail from './components/AuctionDetail';
 import AddAuction from './pages/AddAuction';
-import Detail from './pages/Detail';
 import Home from './pages/Home';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
+import Cart from './pages/Cart';        
 import ChangePassword from './pages/ChangePassword';
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,9 +54,9 @@ function App() {
             <Route exact path="/new" component={AddAuction} />
             <Route exact path="/edit/:id" component={AddAuction} />
             <Route exact path="/auction/:id" component={AuctionDetail} />
+            <Route exact path="/cart" component={Cart} />
             <Route exact path="/success" component={Success} />
             <Route exact path="/orderHistory" component={OrderHistory} />
-            <Route exact path="/auctions/:id" component={Detail} />  
             <Route component={NoMatch} />
           </Switch>
    

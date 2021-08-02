@@ -38,9 +38,15 @@ MERN Full Stack SPA: An auction platform with social features allowing anyone to
     - Auction owners can update the description, or lower the reserve price of their auctions
   - In the users profile, they can monitor closed / completed auctions that they own
   - In the users profile, they can monitor completed auctions they have been active in bidding
+- Users can view their Profile -> Completed Bids to find auctions they have won
+  - The users can "pay" using a mock stripe workflow to process payment for their auctions
+  - The auctions have their payment status updated to "paid" upon successful completion
 
 ## Screenshot
+
 ![image](https://user-images.githubusercontent.com/69044956/127777775-cda42ade-9608-405d-9dfb-7d51b8fcb203.png)
+
+![image](https://user-images.githubusercontent.com/69044956/127863516-159c7f8c-6f32-46de-9e2a-ac16a715e956.png)
 
 ## Deployment
 

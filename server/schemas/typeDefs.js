@@ -36,7 +36,7 @@ type User {
 
 type Checkout {
     session: ID
-  }
+}
 
 type Auth {
     token: ID!
@@ -51,6 +51,7 @@ type Auction {
     description: String!
     reserve: Int
     endDate: String!
+    paid: Boolean
     bids: [Bid]
     activeStatus: Boolean
     auctionInfo: Result
@@ -98,6 +99,7 @@ type Mutation {
     updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
     deleteBid(_id: ID!): Auction
     addOrder(auctions: [ID]!): Order
+    updatePaid(ids: [ID!]): [Auction]
 }
 `;
 
