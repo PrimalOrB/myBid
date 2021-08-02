@@ -46,7 +46,7 @@ MERN Full Stack SPA: An auction platform with social features allowing anyone to
 
 ![image](https://user-images.githubusercontent.com/69044956/127777775-cda42ade-9608-405d-9dfb-7d51b8fcb203.png)
 
-![image](https://user-images.githubusercontent.com/69044956/127777775-cda42ade-9608-405d-9dfb-7d51b8fcb203.png)
+![image](https://user-images.githubusercontent.com/69044956/127863516-159c7f8c-6f32-46de-9e2a-ac16a715e956.png)
 
 ## Deployment
 
