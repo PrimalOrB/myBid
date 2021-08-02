@@ -26,6 +26,8 @@ const Profile = () => {
 
   const user = data?.me || data?.user || {};
 
+  // console.log( data )
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -38,6 +40,7 @@ const Profile = () => {
     );
   } 
 
+  
   const currentList = []
   const closedList = []
   user.auctions.map( a => {

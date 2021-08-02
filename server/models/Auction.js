@@ -25,6 +25,10 @@ const auctionSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    paid: {
+      type: Boolean,
+      default: false
+    },
     endDate: {
       type: Date,
       required: true,
