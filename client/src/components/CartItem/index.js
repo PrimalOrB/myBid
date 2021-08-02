@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const CartItem = () => {
+const CartItem = ( { item } ) => {
 
-    useEffect(() => {
-      return () => {
-        console.log("proceed to checkout");
-      };
-    }, []);
+    return (
+      <div className='cart-item-card'>
+        <div className='cart-item-desc'>
+          <span className='cart-item-title'>{ item.title }</span>
+          <span className='cart-item-description'>{ item.description }</span>
+        </div>
+        <span className='cart-item-price'>${ item.price }</span>
+      </div>
+    )
 
 }
 

@@ -11,30 +11,29 @@ import {
 } from "./actions";
 
 export const reducer = (state, action) => {
+
   switch (action.type) {
     case UPDATE_AUCTIONS:
       return {
         ...state,
-        auctions: [...action.auctions],
+        cart: [...action.cart],
       };
 
     case ADD_TO_CART:
       return {
         ...state,
-        cartOpen: true,
-        cart: [...state.cart, action.auction],
+        cart: [...state.cart, action.cart],
       };
 
     case ADD_MULTIPLE_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, ...action.auctions],
+        cart: [...state.cart, ...action.cart],
       };
 
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
-        cartOpen: true,
         cart: state.cart.map(auction => {
           if (action._id === auction._id) {
             auction.purchaseQuantity = action.purchaseQuantity
@@ -50,14 +49,12 @@ export const reducer = (state, action) => {
 
       return {
         ...state,
-        cartOpen: newState.length > 0,
         cart: newState
       };
 
     case CLEAR_CART:
       return {
         ...state,
-        cartOpen: false,
         cart: []
       };
 

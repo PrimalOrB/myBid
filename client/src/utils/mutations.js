@@ -13,17 +13,13 @@ export const LOGIN_USER = gql`
 `;
 
 //this here needs to be checked for argument names 
-export const ADD_ORDER = gql`
-  mutation addOrder($auctions: [ID]!) {
-    addOrder(auctions: $auctions) {
-      purchaseDate
-      auctions {
-        _id
-        name
-        description
-        price
-        quantity
-      }
+export const UPDATE_PAID = gql`
+  mutation updatePaid($ids: [ID!]) {
+    updatePaid(ids: $ids) {
+      _id
+      paid
+      title
+      description
     }
   }
 `;

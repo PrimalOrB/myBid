@@ -36,7 +36,7 @@ type User {
 
 type Checkout {
     session: ID
-  }
+}
 
 type Auth {
     token: ID!
@@ -99,6 +99,7 @@ type Mutation {
     updateBid(_id: ID!, maxBid: Int!, increment: Int!): Bid
     deleteBid(_id: ID!): Auction
     addOrder(auctions: [ID]!): Order
+    updatePaid(ids: [ID!]): [Auction]
 }
 `;
 

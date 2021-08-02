@@ -20,8 +20,6 @@ const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useAuctionReducer({
-    auctions: [],
-    //cart: [{title: "dummy1", price: 123.00 }, {title: "dummy2", price: 167.00}, {title: "dummy3", price: 450.00}]
     cart: []
   });
 
