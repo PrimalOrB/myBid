@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState, useContext } from 'react'; 
 import { paddedNumber, calculateTimeLeft } from '../../utils/helpers'; 
+import { useStoreContext } from "../../utils/GlobalState";
+// import {StoreProvider} from '../../utils/GlobalState';
+import {ADD_MULTIPLE_TO_CART} from '../../utils/actions'
+
+
 
 const OwnedBidsCard = ( { bid, auction, user, type }) => {
 
@@ -11,12 +16,26 @@ const OwnedBidsCard = ( { bid, auction, user, type }) => {
         }, 1000);
         return () => clearTimeout(timer);
     });
+    const [dispatch] = useStoreContext();
 
     function handleAddCart( auction ) {
-      // this is the auction info that will go to the cart. we will not need all of it, probably title, description, _id, and auctionInfo.currentBid (cost))
-      console.log( auction )
+     
+    dispatch({type: ADD_MULTIPLE_TO_CART, _id: auction._id, payload: auction})
+
+    
       // after payment, we will need to create a dB route which updates the paid status of the auction
     }
+  
+
+
+//Input: {__typename: "Auction", _id: "61075e572425570eea3d7a78", ownerId: "61075dc42425570eea3d7a6c", title: "Ornaments", description: "precious stones", …}
+//:{__typename: "Auction", _id: "61022c2ce4fa4908e66087cd", ownerId: "60f8ba21504f3707f3665ef3", title: "cars", description: "new cars", …}
+
+
+
+
+
+
 
   return (
     <>
