@@ -9,7 +9,7 @@
   --gray: rgba(180, 180, 180, 1);
   --gray-fade-hard: rgba(180, 180, 180, 0.75);
   --gray-fade-soft: rgba(180, 180, 180, 0.25);
-  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow: rgba(0, 0, 0, 0.6);
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -531,6 +531,42 @@ input[type="checkbox"]:active {
 
 .not-paid:hover {
   background-color: var(--secondary-color);
+}
+
+.shopping-cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 3px 3px var(--shadow);
+  background-color: yellow;
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: yellow;
+  }
 }
 
 @media screen and (min-width: 760px) {
