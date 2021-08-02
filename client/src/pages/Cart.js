@@ -1,45 +1,66 @@
 import React, { useEffect } from 'react';
-// import { useStoreContext } from '../utils/GlobalState'
-// import auth from "../utils/auth";
-// import Checkout from '../components/Checkout';
+import { useStoreContext } from '../utils/GlobalState'
+import { useLazyQuery } from '@apollo/client';
+import Auth from "../utils/auth";
+import CartItem from '../components/CartItem';
+import { QUERY_CHECKOUT } from '../utils/queries';
+import { loadStripe } from '@stripe/stripe-js'
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-
-//list of items -state.cart and map objects, auctionList
-//checkout button, stripe event loop
-
-//following is a sample to map items onthsis page to have a total price 
-//push to stripe only 
-//data passsed in global state is here as a reference
-/*
-const StoreProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useAuctionReducer({
-    auctions: [],
-    cart: [{title: "dummy1", price: 123.00 }, {title: "dummy2", price: 167.00}, {title: "dummy3", price: 450.00}]
-  });
-*/
-
-/*
-<ul className='auction-list'>
-        { sortedList.length > 0 ? ( sortedList.map( ( auction ) => {
-            return <AuctionItem key={ auction._id } auction={ auction.title, auction.price,  } addBid={ true }/>
-          } 
-        ) ) : (
-          <Loading />
-        ) }
-        </ul>
-*/
 const Cart = () => {
 
-  // useEffect(() => {
-  //   return () => {
-  //     console.log("proceed to checkout");
-  //   };
-  // }, []);
+  const [state, dispatch] = useStoreContext();
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  useEffect(() => {
+    if (data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
+
+  function calculateTotal() {
+    let sum = 0;
+    state.cart.forEach((item) => {
+      sum += item.price * item.purchaseQuantity;
+    });
+    return sum.toFixed(2);
+  }
+
+  function submitCheckout() {
+    const auctionIds = [];
+  
+    state.cart.forEach((item) => {
+      for (let i = 0; i < item.purchaseQuantity; i++) {
+        auctionIds.push(item._id);
+      }
+    });
+    getCheckout({
+      variables: { auctions: auctionIds }
+    });
+  }
 
   return (
     <>
-    <h1>Checkout</h1>
-    {/* <Checkout /> */}
+    {state.cart.length ?
+      <>
+        <h1>Checkout</h1>
+        <div className='cart-subtotal'>Total: ${calculateTotal()}</div>
+        <ul className='cart-list'>
+        { state.cart.map( item => {
+          return <CartItem key={ item._id } item={ item }/>
+        })}
+        </ul>
+        {Auth.loggedIn() ? (
+              <button onClick={submitCheckout}>Checkout</button>
+          ) : (
+            <span>(log in to check out)</span>
+          )}
+      </>
+    :
+      <span>You have no auctions requiring payment</span>
+    }
     </>
   );
 };

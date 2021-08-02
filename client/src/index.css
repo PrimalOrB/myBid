@@ -262,7 +262,8 @@ h2 {
   flex-wrap: wrap;
 }
 
-.owned-list {
+.owned-list,
+.cart-list {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -290,13 +291,14 @@ h2 {
 .card,
 .bid-form,
 .password-form,
-.auction-form {
+.auction-form,
+.cart-item-card {
   margin: 0.5rem;
   width: 90%;
   display: flex;
   flex-direction: column;
   height: auto;
-  padding: 0.5rem;
+  padding: 0.5rem !important;
   border-radius: 0.5rem;
   border: 1px solid var(--primary-color);
   background-color: var(--white-fade-hard);
@@ -315,8 +317,49 @@ h2 {
   text-align: center;
 }
 
-.owned-list .card {
-  width: calc(100% - 1rem);
+.owned-list .card,
+.cart-item-card {
+  width: calc(95%);
+}
+
+.cart-item-card {
+  flex-direction: row;
+}
+
+.cart-item-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.cart-item-description {
+  padding-left: 1rem;
+}
+
+.cart-item-price {
+  flex: 0;
+  flex-shrink: 0;
+  padding: 0.15rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cart-subtotal {
+  background-color: var(--white-fade-hard);
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--primary-color);
+  margin-top: 0.5rem;
 }
 
 .card-title {
@@ -621,6 +664,10 @@ input[type="checkbox"]:active {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+
+  .cart-item-card {
+    width: calc(60%);
   }
 
   .card,

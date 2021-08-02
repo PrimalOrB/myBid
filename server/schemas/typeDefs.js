@@ -36,7 +36,7 @@ type User {
 
 type Checkout {
     session: ID
-  }
+}
 
 type Auth {
     token: ID!

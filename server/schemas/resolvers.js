@@ -33,20 +33,20 @@ const resolvers = {
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       const order = new Order({ auctions: args.auctions });
+      console.log( order )
       const line_items = [];
 
       const { auctions } = await order.populate('auctions').execPopulate();
 
       for (let i = 0; i < auctions.length; i++) {
         const auction = await stripe.auctions.create({
-          name: auctions[i].name,
-          description: auctions[i].description,
-          images: [`${url}/images/${auctions[i].image}`]
+          title: auctions[i].title,
+          description: auctions[i].description
         });
 
         const price = await stripe.prices.create({
           auction: auction.id,
-          unit_amount: auctions[i].price * 100,
+          unit_amount: auctions[i].auctionInfo.currentBid * 100,
           currency: 'usd',
         });
 

@@ -7,7 +7,7 @@ import { RiLogoutCircleRLine, RiAddCircleLine, RiLoginCircleLine, RiCreativeComm
 import { FiShoppingCart } from 'react-icons/fi'
 import { idbPromise } from "../../utils/helpers";
 import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import { ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 
 const Header = () => {
 
@@ -17,8 +17,6 @@ const Header = () => {
   };
 
   const [state, dispatch] = useStoreContext();
-
-  console.log( state.cart )
 
   useEffect(() => {
     async function getCart() {
