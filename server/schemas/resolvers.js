@@ -416,6 +416,22 @@ const resolvers = {
       }
       throw new AuthenticationError('Incorrect credentials');
     },
+    updatePaid: async (parent, args, context) => {
+      console.log( args )
+      if( context.user ){
+        const updatedAuctions = []
+        for( var i = 0; i < args.ids.length; i++){
+          const updatedAuction = await Auction.findOneAndUpdate( 
+            { _id: args.ids[i] },
+            { paid: true },
+            { new: true, runValidators: true }
+            );
+            updatedAuctions.push(updatedAuction)
+          }
+          return updatedAuctions;
+      }
+      throw new AuthenticationError('Incorrect credentials');
+    },
   }
 }
 

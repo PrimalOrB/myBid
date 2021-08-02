@@ -278,7 +278,8 @@ h2 {
 }
 
 .place-bid-container,
-.add-auction-container {
+.add-auction-container,
+.success-container {
   width: 90%;
   height: 100%;
   display: flex;

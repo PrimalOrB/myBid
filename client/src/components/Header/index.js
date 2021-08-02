@@ -43,7 +43,7 @@ const Header = () => {
           <>
             <Link to="/new"><RiAddCircleLine /><span className='menu-label'>New Auction</span></Link>
             <Link to="/profile"><CgProfile /><span className='menu-label'>Profile</span></Link>
-            <Link to="/cart" className="shopping-cart"><FiShoppingCart /><span className='cart-count'>{ state.cart.length > 0 && state.cart.length}</span></Link>
+            <Link to="/cart" className="shopping-cart"><FiShoppingCart />{ state.cart.length > 0 && <span className='cart-count'>{state.cart.length}</span> }</Link>
             <Link to="/" onClick={logout}><RiLogoutCircleRLine /><span className='menu-label'>Logout</span></Link>
           </>
         ) : (
