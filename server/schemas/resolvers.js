@@ -1,14 +1,9 @@
-//this section has to match with queries and mutationson client side, special attention to changes to 
-//product to auction and deletion of category/categories, models must match to anything here
-
-const { User, Auction, Bid } = require( '../models' )
+const { User, Auction, Bid, Order } = require( '../models' )
 const { AuthenticationError } = require( 'apollo-server-express' )
 const { signToken } = require( '../utils/auth' )
 const { sendEmail } = require( '../utils/nodemailer' )
 const bcrypt = require('bcrypt');
-//this is the place where we are importing the stripe session with unique code, this is test API key, not real
-//for actual transaction
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 const resolvers = {
   Query:  {
@@ -27,27 +22,33 @@ const resolvers = {
     },
 
     //this is the main place where the stripe session will return session: session.id and this will be used in 
-//the Cart/index.js, as import { QUERY_CHECKOUT } from '../../utils/queries';   and passed in as data
-//in UseEffect with stripePromise, each session.id will differ based on product
+  //the Cart/index.js, as import { QUERY_CHECKOUT } from '../../utils/queries';   and passed in as data
+  //in UseEffect with stripePromise, each session.id will differ based on product
 
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ auctions: args.auctions });
-      console.log( order )
       const line_items = [];
 
-      const { auctions } = await order.populate('auctions').execPopulate();
+      const auctionsData = []
+      if( args.auctions.length > 0 ){
+        for( let i = 0; i < args.auctions.length; i++){
+          // populate and store the virtual props of auction as it was not reachable within the me query on the front end
+          const auctionData = await Auction.findOne({ _id: args.auctions[i] })
+            .populate('bids'); 
+            auctionsData.push( { title: auctionData.title, description: auctionData.description, price: auctionData.auctionInfo.currentBid } )
+          }
+        }
 
-      for (let i = 0; i < auctions.length; i++) {
-        const auction = await stripe.auctions.create({
-          title: auctions[i].title,
-          description: auctions[i].description
+      for (let i = 0; i < auctionsData.length; i++) {
+        const product = await stripe.products.create({
+          name: auctionsData[i].title,
+          description: auctionsData[i].description
         });
 
         const price = await stripe.prices.create({
-          auction: auction.id,
-          unit_amount: auctions[i].auctionInfo.currentBid * 100,
-          currency: 'usd',
+          product: product.id,
+          unit_amount: auctionsData[i].price * 100,
+          currency: 'cad',
         });
 
         line_items.push({
@@ -55,6 +56,7 @@ const resolvers = {
           quantity: 1
         });
       }
+      console.log( line_items)
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
